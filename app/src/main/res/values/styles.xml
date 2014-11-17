@@ -2,7 +2,11 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/FlavrActionBar</item>
+    </style>
+
+    <style name="FlavrActionBar" parent = "@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/orange</item>
     </style>
 
 </resources>
