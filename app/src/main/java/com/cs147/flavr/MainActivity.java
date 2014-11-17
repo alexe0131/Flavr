@@ -38,6 +38,9 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    //Goes to the form view when give food is clicked.
     public void giveFood(View view) {
         Intent goToForm = new Intent(this, createEvent.class);
         startActivity(goToForm);

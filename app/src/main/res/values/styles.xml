@@ -5,8 +5,9 @@
         <item name="android:actionBarStyle">@style/FlavrActionBar</item>
     </style>
 
+    <!-- Orange Title Bar -->
     <style name="FlavrActionBar" parent = "@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/orange</item>
+        <item name="android:background">#ff7200</item>
     </style>
 
 </resources>

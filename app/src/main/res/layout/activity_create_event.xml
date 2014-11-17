@@ -58,7 +58,9 @@
         android:id="@+id/SubmitEvent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="56dp" />
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/roundedbutton"/>
+
 
 
 </RelativeLayout>
