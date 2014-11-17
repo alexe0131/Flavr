@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- Provides the rounded button format -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+        <solid android:color="#ff7200" />
+
+        <corners android:bottomRightRadius="8dip"
+            android:bottomLeftRadius="8dip"
+            android:topRightRadius="8dip"
+            android:topLeftRadius="8dip"/>
+
+</shape>

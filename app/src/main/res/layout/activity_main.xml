@@ -27,7 +27,8 @@
             android:text="Give Food"
             android:id="@+id/giveFood"
             android:onClick="giveFood"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/roundedbutton"/>
 
         <Button
             android:layout_marginTop="50dp"
@@ -35,6 +36,7 @@
             android:layout_height="100dp"
             android:text="Get Food"
             android:id="@+id/getFood"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/roundedbutton"/>
     </LinearLayout>
 </RelativeLayout>
