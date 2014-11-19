@@ -6,6 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Button;
+import android.view.View.OnClickListener;
+
 
 
 public class MainActivity extends Activity {
@@ -14,7 +17,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+
+        }
 
 
     @Override
@@ -42,6 +46,7 @@ public class MainActivity extends Activity {
 
     //Goes to the form view when give food is clicked.
     public void giveFood(View view) {
+
         Intent goToForm = new Intent(this, createEvent.class);
         startActivity(goToForm);
     }

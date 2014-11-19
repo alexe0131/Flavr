@@ -9,7 +9,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:id="@+id/editText"
+        android:id="@+id/event_title"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -18,8 +18,8 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
+        android:id="@+id/food_available"
+        android:layout_below="@id/event_title"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="Food Available"/>
@@ -27,8 +27,8 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="100dp"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/editText2"
+        android:id="@+id/location"
+        android:layout_below="@id/food_available"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="Location"/>
@@ -36,17 +36,17 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:id="@+id/editText4"
-        android:layout_below="@+id/editText3"
+        android:id="@+id/available_until"
+        android:layout_below="@+id/location"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Available for:"/>
+        android:hint="Available until:"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:id="@+id/editText5"
-        android:layout_below="@+id/editText4"
+        android:id="@+id/keywords"
+        android:layout_below="@+id/available_until"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="Keywords"/>
@@ -59,7 +59,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/roundedbutton"/>
+        android:background="@drawable/roundedbutton"
+        android:onClick="submitEvent"/>
 
 
 
