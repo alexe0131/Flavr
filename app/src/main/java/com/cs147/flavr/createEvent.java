@@ -12,6 +12,8 @@ import java.lang.String;
 
 
 public class createEvent extends Activity {
+    public final static String TO_CREATE = "temp";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,18 +51,18 @@ public class createEvent extends Activity {
     //the next activity of confirming the event.
     public void submitEvent(View view) {
         Intent submit = new Intent(this, EventConfirmation.class);
-//        String [] eventInformation = new String[5];
-//        String eventTitle = extractStringFromID(R.id.event_title);
-//        eventInformation[0]= eventTitle;
-//        String foodAvailable = extractStringFromID(R.id.food_available);
-//        eventInformation[1]= foodAvailable;
-//        String location = extractStringFromID(R.id.location);
-//        eventInformation[2]= location;
-//        String availableUntil = extractStringFromID(R.id.available_until);
-//        eventInformation[3]= availableUntil;
-//        String keywords = extractStringFromID(R.id.keywords);
-//        eventInformation[4]= keywords;
-//        submit.putExtra("informationArray",eventInformation);
+        String [] eventInformation = new String[5];
+        String eventTitle = extractStringFromID(R.id.event_title);
+        eventInformation[0]= eventTitle;
+        String foodAvailable = extractStringFromID(R.id.food_available);
+        eventInformation[1]= foodAvailable;
+        String location = extractStringFromID(R.id.location);
+        eventInformation[2]= location;
+        String availableUntil = extractStringFromID(R.id.available_until);
+        eventInformation[3]= availableUntil;
+        String keywords = extractStringFromID(R.id.keywords);
+        eventInformation[4]= keywords;
+        submit.putExtra(TO_CREATE, eventInformation);
         startActivity(submit);
     }
 }
