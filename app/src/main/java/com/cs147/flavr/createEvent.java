@@ -58,11 +58,15 @@ public class createEvent extends Activity {
         eventInformation[1]= foodAvailable;
         String location = extractStringFromID(R.id.location);
         eventInformation[2]= location;
-        String availableUntil = extractStringFromID(R.id.available_until);
-        eventInformation[3]= availableUntil;
-        String keywords = extractStringFromID(R.id.keywords);
-        eventInformation[4]= keywords;
+//        String availableUntil = extractStringFromID(R.id.available_until);
+//        eventInformation[3]= availableUntil;
+//        String keywords = extractStringFromID(R.id.keywords);
+//        eventInformation[4]= keywords;
         submit.putExtra(TO_CREATE, eventInformation);
         startActivity(submit);
+    }
+    public void addInfo(View view) {
+        Intent additionalInfo = new Intent(this, AdditionalInformation.class);
+        startActivity(additionalInfo);
     }
 }

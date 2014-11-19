@@ -171,10 +171,10 @@
             food.setText("Food Available: "+information[1]);
             TextView location = (TextView) findViewById(R.id.locationinfo);
             location.setText("Location"+information[2]);
-            TextView timeAvail = (TextView) findViewById(R.id.time_available);
-            timeAvail.setText("Available until: "+information[3]);
-            TextView keywords = (TextView) findViewById(R.id.keywords2);
-            keywords.setText("Keywords: "+information[4]);
+//            TextView timeAvail = (TextView) findViewById(R.id.time_available);
+//            timeAvail.setText("Available until: "+information[3]);
+//            TextView keywords = (TextView) findViewById(R.id.keywords2);
+//            keywords.setText("Keywords: "+information[4]);
         }
 
         protected void onCreate(Bundle savedInstanceState) {
