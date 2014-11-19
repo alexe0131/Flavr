@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
+import android.view.View;
+import android.widget.EditText;
+import java.lang.String;
+
 
 
 public class createEvent extends Activity {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
     }
@@ -35,5 +39,28 @@ public class createEvent extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    //Extracts string from an edit text field where the user inputs data.
+    public String extractStringFromID(int id) {
+        EditText editText = (EditText) findViewById(id);
+        return editText.getText().toString();
+    }
+    //Reads all the strings from the event listing and puts them into an array to be passed into
+    //the next activity of confirming the event.
+    public void submitEvent(View view) {
+        Intent submit = new Intent(this, EventConfirmation.class);
+//        String [] eventInformation = new String[5];
+//        String eventTitle = extractStringFromID(R.id.event_title);
+//        eventInformation[0]= eventTitle;
+//        String foodAvailable = extractStringFromID(R.id.food_available);
+//        eventInformation[1]= foodAvailable;
+//        String location = extractStringFromID(R.id.location);
+//        eventInformation[2]= location;
+//        String availableUntil = extractStringFromID(R.id.available_until);
+//        eventInformation[3]= availableUntil;
+//        String keywords = extractStringFromID(R.id.keywords);
+//        eventInformation[4]= keywords;
+//        submit.putExtra("informationArray",eventInformation);
+        startActivity(submit);
     }
 }
