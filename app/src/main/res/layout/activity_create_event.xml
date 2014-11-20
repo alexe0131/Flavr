@@ -1,95 +1,253 @@
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context="com.cs147.flavr.createEvent">
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:id="@+id/event_title"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:hint="Event Title"/>
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:id="@+id/food_available"
-            android:layout_below="@id/event_title"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:hint="Food Type"/>
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="80dp"
-            android:id="@+id/description"
-            android:layout_below="@id/food_available"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:hint="Optional Description"/>
-
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="80dp"
-            android:inputType="textPostalAddress"
-            android:ems="10"
-            android:id="@+id/location"
-            android:layout_centerVertical="true"
-            android:layout_below="@id/description"
-            android:hint="Please enter the location of your event."/>
-
-        <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/location"
-            android:id="@+id/linearLayout">
+            android:orientation="horizontal"
+            android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
                 android:textSize="16dp"
-                android:text="End Time: "
-                android:id="@+id/end_time"
-                android:layout_gravity="left"
-                android:layout_marginTop="50dp" />
+                android:text="*Food Type: "
+                android:id="@+id/food_type_label"></TextView>
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/food_type"
+                android:layout_weight="1"
+                android:hint="Enter Food Type here"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:text="*Event Title: "
+                android:id="@+id/event_title_label"></TextView>
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:id="@+id/event_title"
+                android:layout_weight="1"
+                android:hint="Enter Event Title here"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:text="Description: "
+                android:id="@+id/description_label"></TextView>
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:id="@+id/description"
+                android:hint="Enter Event Description Here"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:text="*Location: "
+                android:id="@+id/location_label"></TextView>
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:id="@+id/location"
+                android:hint="Enter the full address of your event here"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/row5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:text="*Start Time: "
+                android:id="@+id/start_time_label"
+                android:layout_marginTop="75dp">
+            </TextView>
             <TimePicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/end_time"
-                android:id="@+id/timePicker"
-                android:scaleX=".75"
-                android:scaleY=".75"/>
-        </RelativeLayout>
+                android:id="@+id/start_time"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/row6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:text="*End Time: "
+                android:id="@+id/end_time_label"
+                android:layout_marginTop="75dp">
+            </TextView>
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/end_time"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/row7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:text="Tags: "
+                android:id="@+id/tags_label"></TextView>
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:id="@+id/tags"
+                android:hint="Enter keywords for your event"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/row8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:text="Capacity: "
+                android:id="@+id/capacity_label"></TextView>
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:id="@+id/capacity"
+                android:hint="Maximum number of attendees: "
+                android:inputType="number"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <!--<EditText-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:id="@+id/food_type"-->
+        <!--android:layout_to/>-->
+        <!--<EditText-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:id="@+id/food_available"-->
+        <!--android:layout_below="@id/event_title"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:hint="Food Type"/>-->
+        <!--<EditText-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:id="@+id/description"-->
+        <!--android:layout_below="@id/food_available"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:hint="Optional Description"/>-->
+
+
+        <!--<EditText-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:inputType="textPostalAddress"-->
+        <!--android:ems="10"-->
+        <!--android:id="@+id/location"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_below="@id/description"-->
+        <!--android:hint="Please enter the location of your event."/>-->
+
+        <!--<TableRow-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:textSize="16dp"-->
+        <!--android:text="End Time: "-->
+        <!--android:id="@+id/end_time"-->
+        <!--android:layout_gravity="left"-->
+        <!--android:layout_marginTop="50dp" />-->
+
+        <!--<TimePicker-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toRightOf="@id/end_time"-->
+        <!--android:id="@+id/timePicker"-->
+        <!--android:scaleX=".75"-->
+        <!--android:scaleY=".75"-->
+        <!--android:layout_column="17" />-->
+        <!--</TableRow>-->
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:background="@drawable/roundedbutton"
-            android:text="Submit Event"
-            android:id="@+id/submit"
-            android:textSize="16dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:onClick="submitEvent"/>
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Submit Event"
+        android:id="@+id/submit"
+        android:textSize="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:onClick="submitEvent"/>
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:background="@drawable/roundedbutton"
-            android:textSize="16dp"
-            android:text="Add more information..."
-            android:id="@+id/moreinfo"
-            android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/linearLayout"
-            android:layout_alignEnd="@+id/linearLayout"
-            android:onClick="addInfo"/>
-
-    </RelativeLayout>
+        <!--<Button-->
+        <!--style="?android:attr/buttonStyleSmall"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="@drawable/roundedbutton"-->
+        <!--android:textSize="16dp"-->
+        <!--android:text="Add more information..."-->
+        <!--android:id="@+id/moreinfo"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignRight="@+id/linearLayout"-->
+        <!--android:layout_alignEnd="@+id/linearLayout"-->
+        <!--android:onClick="addInfo"/>-->
+    </LinearLayout>
+</ScrollView>

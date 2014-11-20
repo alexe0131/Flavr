@@ -51,17 +51,20 @@ public class createEvent extends Activity {
     //the next activity of confirming the event.
     public void submitEvent(View view) {
         Intent submit = new Intent(this, EventConfirmation.class);
-        String [] eventInformation = new String[5];
+        String [] eventInformation = new String[6];
+        String foodType = extractStringFromID(R.id.food_type);
+        eventInformation[0]= foodType;
         String eventTitle = extractStringFromID(R.id.event_title);
-        eventInformation[0]= eventTitle;
-        String foodAvailable = extractStringFromID(R.id.food_available);
-        eventInformation[1]= foodAvailable;
+        eventInformation[1]= eventTitle;
         String description = extractStringFromID(R.id.description);
         eventInformation[2]= description;
         String location = extractStringFromID(R.id.location);
         eventInformation[3] = location;
-
-        submit.putExtra(TO_CREATE, eventInformation);
+        String tags = extractStringFromID(R.id.tags);
+        eventInformation[4] = tags;
+        String capacity = extractStringFromID(R.id.capacity);
+        eventInformation[5] = capacity;
+         submit.putExtra(TO_CREATE, eventInformation);
         startActivity(submit);
     }
     public void addInfo(View view) {
