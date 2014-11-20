@@ -7,12 +7,15 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
-import java.lang.String;
+import android.widget.TimePicker;
 
+import java.lang.String;
+import java.util.Calendar;
 
 
 public class createEvent extends Activity {
-    public final static String TO_CREATE = "temp";
+    public final static String EVENT_STRINGS = "temp";
+    public final static String EVENT_TIMES = "tempTimes";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class createEvent extends Activity {
     //the next activity of confirming the event.
     public void submitEvent(View view) {
         Intent submit = new Intent(this, EventConfirmation.class);
+        Bundle event = new Bundle();
         String [] eventInformation = new String[6];
         String foodType = extractStringFromID(R.id.food_type);
         eventInformation[0]= foodType;
@@ -64,7 +68,22 @@ public class createEvent extends Activity {
         eventInformation[4] = tags;
         String capacity = extractStringFromID(R.id.capacity);
         eventInformation[5] = capacity;
-        submit.putExtra(TO_CREATE, eventInformation);
+        int[] times = new int [4];
+        TimePicker startTimer = (TimePicker) findViewById(R.id.start_time);
+
+        int startHour = startTimer.getCurrentHour();
+        int startMinute = startTimer.getCurrentMinute();
+        times[0] = startHour;
+        times[1] = startMinute;
+        TimePicker endTimer = (TimePicker) findViewById(R.id.end_time);
+        endTimer.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        int endHour = endTimer.getCurrentHour();
+        int endMinute = endTimer.getCurrentMinute();
+        times[2] = endHour;
+        times[3] = endMinute;
+        event.putIntArray(EVENT_TIMES, times);
+        event.putStringArray(EVENT_STRINGS, eventInformation);
+        submit.putExtras(event);
         startActivity(submit);
     }
 
