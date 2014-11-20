@@ -165,14 +165,20 @@
 //    }
 
         public void printEventInfo(String [] information) {
-            TextView eventTitle = (TextView) findViewById(R.id.event_name);
+            TextView eventTitle = (TextView) findViewById(R.id.confirmation_food);
             eventTitle.setText(information[0]);
-            TextView food = (TextView) findViewById(R.id.food_info);
-            food.setText("Food Available: "+information[1]);
-            TextView description = (TextView) findViewById(R.id.description2);
+            TextView food = (TextView) findViewById(R.id.confirmation_event);
+            food.setText("Event: "+information[1]);
+            TextView description = (TextView) findViewById(R.id.confirmation_description);
             description.setText("Description: "+information[2]);
-            TextView location = (TextView) findViewById(R.id.locationinfo);
-            location.setText("Location"+information[3]);
+            TextView location = (TextView) findViewById(R.id.confirmation_location);
+            location.setText("Location: "+information[3]);
+            TextView tags = (TextView) findViewById(R.id.confirmation_tags);
+            tags.setText("Tags: "+information[4]);
+            TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
+            capacity.setText("Capacity: "+information[5]);
+
+
 
 //            TextView keywords = (TextView) findViewById(R.id.keywords);
 //            keywords.setText("Keywords: "+information[4]);

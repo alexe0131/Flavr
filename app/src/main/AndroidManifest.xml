@@ -51,14 +51,6 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBsyVWFerGUin0JDBG7CAihu6Mqc6z7Uho" />
 
-        <activity
-            android:name="com.cs147.flavr.AdditionalInformation"
-            android:label="@string/title_activity_additional_information"
-            android:parentActivityName="com.cs147.flavr.createEvent" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cs147.flavr.createEvent" />
-        </activity>
     </application>
 
 </manifest>
