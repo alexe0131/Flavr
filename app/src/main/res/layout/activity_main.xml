@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,41 +7,56 @@
 
     android:background="@drawable/background"
     android:scaleType="centerCrop">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:textSize="90dp"
             android:text="FLAVR"
             android:id="@+id/Title"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_marginTop="50dp"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:textSize="40dp"
-            android:text="Give Food"
-            android:id="@+id/giveFood"
-            android:onClick="giveFood"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/roundedbutton"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="77dp" />
 
-        <Button
-            android:layout_marginTop="50dp"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:textSize="40dp"
-            android:text="Get Food"
-            android:id="@+id/getFood"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/roundedbutton"/>
-    </LinearLayout>
+            android:id="@+id/linearLayout2"
+            android:layout_below="@+id/Title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="125dp"
+                android:textSize="25dp"
+                android:text="Get Food"
+                android:id="@+id/getFood"
+                android:background="@drawable/roundedbutton"
+                android:layout_below="@+id/Title"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="125dp"
+                android:textSize="25dp"
+                android:text="Give Food"
+                android:id="@+id/giveFood"
+                android:onClick="giveFood"
+                android:background="@drawable/roundedbutton"
+                android:layout_marginTop="20dp"
+                android:layout_alignBottom="@+id/getFood"
+                android:layout_alignRight="@+id/Title"
+                android:layout_alignEnd="@+id/Title"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+
 </RelativeLayout>

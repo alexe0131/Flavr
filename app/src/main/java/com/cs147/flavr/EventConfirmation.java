@@ -169,11 +169,12 @@
             eventTitle.setText(information[0]);
             TextView food = (TextView) findViewById(R.id.food_info);
             food.setText("Food Available: "+information[1]);
+            TextView description = (TextView) findViewById(R.id.description2);
+            description.setText("Description: "+information[2]);
             TextView location = (TextView) findViewById(R.id.locationinfo);
-            location.setText("Location"+information[2]);
-//            TextView timeAvail = (TextView) findViewById(R.id.time_available);
-//            timeAvail.setText("Available until: "+information[3]);
-//            TextView keywords = (TextView) findViewById(R.id.keywords2);
+            location.setText("Location"+information[3]);
+
+//            TextView keywords = (TextView) findViewById(R.id.keywords);
 //            keywords.setText("Keywords: "+information[4]);
         }
 
