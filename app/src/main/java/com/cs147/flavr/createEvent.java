@@ -64,12 +64,8 @@ public class createEvent extends Activity {
         eventInformation[4] = tags;
         String capacity = extractStringFromID(R.id.capacity);
         eventInformation[5] = capacity;
-         submit.putExtra(TO_CREATE, eventInformation);
+        submit.putExtra(TO_CREATE, eventInformation);
         startActivity(submit);
     }
-    public void addInfo(View view) {
-        Intent additionalInfo = new Intent(this, AdditionalInformation.class);
-        startActivity(additionalInfo);
 
-    }
 }
