@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        }
+    }
 
 
     @Override
@@ -44,9 +44,9 @@ public class MainActivity extends Activity {
     }
 
 
-    //Goes to the form view when give food is clicked.
+    /*Goes to the form view to create event when give food is clicked.
+     */
     public void giveFood(View view) {
-
         Intent goToForm = new Intent(this, createEvent.class);
         startActivity(goToForm);
     }

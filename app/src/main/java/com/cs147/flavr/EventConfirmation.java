@@ -1,24 +1,11 @@
 //NOTICE: THIS CODE CONTAINS MATERIAL THAT IS FREELY DISTRIBUTED BY GOOGLE.INC
 package com.cs147.flavr;
 
-
-
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.IntentSender;
 import android.location.Address;
-import android.location.Location;
 import android.os.Bundle;
-import java.sql.Time;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -27,16 +14,16 @@ import android.content.Intent;
 import java.lang.String;
 import java.util.Calendar;
 import com.google.android.gms.maps.model.LatLng;
-import android.location.Location;
-import android.os.AsyncTask;
 import android.location.Geocoder;
-import java.util.Locale;
-import android.location.Address;
+
 import java.util.List;
 import java.io.IOException;
 
 public class EventConfirmation extends FragmentActivity{
-    private TextView mAddress;
+
+    /* Looks up the address that the user enters and finds the latitude and longitude of that
+    * location to be looked up on a map.
+    */
     public LatLng getLocationFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(this);
         List<Address> address;
@@ -52,6 +39,8 @@ public class EventConfirmation extends FragmentActivity{
         return loc;
     }
 
+    /* Iterates through the array of event info and prints it out on the confirmation screen.
+    */
     public void printEventInfo(String [] information) {
         TextView eventTitle = (TextView) findViewById(R.id.confirmation_food);
         eventTitle.setText(information[0]);
@@ -65,13 +54,10 @@ public class EventConfirmation extends FragmentActivity{
         tags.setText("Tags: "+information[4]);
         TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
         capacity.setText("Capacity: "+information[5]);
-
-
-
-//            TextView keywords = (TextView) findViewById(R.id.keywords);
-//            keywords.setText("Keywords: "+information[4]);
     }
-
+    /* Retrieves the times that the user entered on the previous screen and uses these to
+    * calculate how long until the start and end times the user is.
+    */
     private void printEventExpiry(int[] times) {
         Calendar c = Calendar.getInstance();
         int sysHour = c.get(Calendar.HOUR_OF_DAY);
@@ -104,7 +90,9 @@ public class EventConfirmation extends FragmentActivity{
         }
 
     }
-
+    /* Retrieves bundled information from create event activity, updates the map location
+    * accordingly, and calls the methods to print the event information and times
+    */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent eventInfo = getIntent();
@@ -139,8 +127,5 @@ public class EventConfirmation extends FragmentActivity{
 
         return super.onOptionsItemSelected(item);
     }
-    //
-    //    public void printConfirmation(View view) {
-    //
-    //    }
+
 }

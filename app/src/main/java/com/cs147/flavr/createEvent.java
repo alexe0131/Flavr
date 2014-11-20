@@ -8,13 +8,14 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
-
 import java.lang.String;
 import java.util.Calendar;
 
 
 public class createEvent extends Activity {
+    //Temporary array for event string information.
     public final static String EVENT_STRINGS = "temp";
+    //Temporary array for event time information.
     public final static String EVENT_TIMES = "tempTimes";
 
     @Override
@@ -45,13 +46,18 @@ public class createEvent extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    //Extracts string from an edit text field where the user inputs data.
+
+    /*Extracts string from an edit text field where the user inputs data.
+     */
     public String extractStringFromID(int id) {
         EditText editText = (EditText) findViewById(id);
         return editText.getText().toString();
     }
-    //Reads all the strings from the event listing and puts them into an array to be passed into
-    //the next activity of confirming the event.
+
+    /*Upon the clicking of the submit button, reads all the strings and times from the event listing and puts them into an respective arrays to be passed into
+     *the next activity of confirming the event. Bundles these into an extra for the intent
+     * and goes to event confirmation.
+     */
     public void submitEvent(View view) {
         Intent submit = new Intent(this, EventConfirmation.class);
         Bundle event = new Bundle();
