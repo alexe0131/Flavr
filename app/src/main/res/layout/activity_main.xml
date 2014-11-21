@@ -4,21 +4,17 @@
     android:layout_height="match_parent"
 
    tools:context=".MainActivity"
-
-    android:background="@drawable/background"
     android:scaleType="centerCrop">
 
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="90dp"
-            android:text="FLAVR"
-            android:id="@+id/Title"
-            android:layout_gravity="center_horizontal"
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/flavrlogo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="77dp" />
+            android:id="@+id/logo"/>
+
 
         <LinearLayout
             android:orientation="vertical"
@@ -26,26 +22,26 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:id="@+id/linearLayout2"
-            android:layout_below="@+id/Title"
+            android:layout_below="@+id/logo"
+            android:layout_marginTop="50dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
             <Button
                 android:layout_width="250dp"
-                android:layout_height="125dp"
+                android:layout_height="100dp"
                 android:textSize="25dp"
                 android:text="Get Food"
                 android:id="@+id/getFood"
                 android:background="@drawable/roundedbutton"
-                android:layout_below="@+id/Title"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="20dp"
+
                 android:layout_gravity="center_horizontal"/>
 
             <Button
                 android:layout_width="250dp"
-                android:layout_height="125dp"
+                android:layout_height="100dp"
                 android:textSize="25dp"
                 android:text="Give Food"
                 android:id="@+id/giveFood"
