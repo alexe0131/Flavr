@@ -176,10 +176,12 @@
         android:background="@drawable/roundedbutton"
         android:text="Submit Event"
         android:id="@+id/submit"
-        android:textSize="16dp"
+        android:textSize="20dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:onClick="submitEvent"/>
+        android:onClick="submitEvent"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="25dp"/>
 
     </LinearLayout>
 </ScrollView>

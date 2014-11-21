@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import java.lang.String;
 import java.util.Calendar;
+import android.widget.Toast;
 
 
 public class createEvent extends Activity {
@@ -54,43 +55,54 @@ public class createEvent extends Activity {
         return editText.getText().toString();
     }
 
+    private void giveToastError(String error) {
+        Toast errorMessage;
+        if(error == "foodType")  Toast.makeText(getApplicationContext(), "Please enter a valid food type.", Toast.LENGTH_LONG).show();
+        else if(error == "eventTitle")  Toast.makeText(getApplicationContext(), "Please enter a valid event title.", Toast.LENGTH_LONG).show();
+        else if(error == "location")  Toast.makeText(getApplicationContext(), "Please enter a valid location.", Toast.LENGTH_LONG).show();
+    }
     /*Upon the clicking of the submit button, reads all the strings and times from the event listing and puts them into an respective arrays to be passed into
      *the next activity of confirming the event. Bundles these into an extra for the intent
      * and goes to event confirmation.
      */
     public void submitEvent(View view) {
-        Intent submit = new Intent(this, EventConfirmation.class);
-        Bundle event = new Bundle();
-        String [] eventInformation = new String[6];
-        String foodType = extractStringFromID(R.id.food_type);
-        eventInformation[0]= foodType;
-        String eventTitle = extractStringFromID(R.id.event_title);
-        eventInformation[1]= eventTitle;
-        String description = extractStringFromID(R.id.description);
-        eventInformation[2]= description;
-        String location = extractStringFromID(R.id.location);
-        eventInformation[3] = location;
-        String tags = extractStringFromID(R.id.tags);
-        eventInformation[4] = tags;
-        String capacity = extractStringFromID(R.id.capacity);
-        eventInformation[5] = capacity;
-        int[] times = new int [4];
-        TimePicker startTimer = (TimePicker) findViewById(R.id.start_time);
 
+        String[] eventInformation = new String[6];
+        String foodType = extractStringFromID(R.id.food_type);
+        String eventTitle = extractStringFromID(R.id.event_title);
+        String description = extractStringFromID(R.id.description);
+        String location = extractStringFromID(R.id.location);
+        String tags = extractStringFromID(R.id.tags);
+        String capacity = extractStringFromID(R.id.capacity);
+        if (foodType.length() == 0) giveToastError("foodType");
+        else if (eventTitle.length() == 0) giveToastError("eventTitle");
+        else if (location.length() == 0) giveToastError("location");
+        else {
+            eventInformation[0] = foodType;
+            eventInformation[1] = eventTitle;
+            eventInformation[2] = description;
+            eventInformation[3] = location;
+            eventInformation[4] = tags;
+
+        eventInformation[5] = capacity;
+        int[] times = new int[4];
+        TimePicker startTimer = (TimePicker) findViewById(R.id.start_time);
         int startHour = startTimer.getCurrentHour();
         int startMinute = startTimer.getCurrentMinute();
         times[0] = startHour;
         times[1] = startMinute;
         TimePicker endTimer = (TimePicker) findViewById(R.id.end_time);
-        endTimer.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
         int endHour = endTimer.getCurrentHour();
         int endMinute = endTimer.getCurrentMinute();
         times[2] = endHour;
         times[3] = endMinute;
+            Intent submit = new Intent(this, EventConfirmation.class);
+            Bundle event = new Bundle();
         event.putIntArray(EVENT_TIMES, times);
         event.putStringArray(EVENT_STRINGS, eventInformation);
         submit.putExtras(event);
         startActivity(submit);
+    }
     }
 
 }
