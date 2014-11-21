@@ -28,14 +28,17 @@ public class EventConfirmation extends FragmentActivity{
         Geocoder coder = new Geocoder(this);
         List<Address> address;
         LatLng loc = null;
-        try {
-            address = coder.getFromLocationName(strAddress, 5);
-            if(address == null) return null;
-            Address location = address.get(0);
-            loc = new LatLng(location.getLatitude(), location.getLongitude());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                address = coder.getFromLocationName(strAddress, 5);
+                if (address == null) return null;
+                Address location = address.get(0);
+                if (location != null)
+                    loc = new LatLng(location.getLatitude(), location.getLongitude());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         return loc;
     }
 
@@ -70,8 +73,11 @@ public class EventConfirmation extends FragmentActivity{
         if (startHour > sysHour) {
             int hourDiff = startHour - sysHour;
             int minDiff = startMin - sysMin;
-            if(sysMin > startMin) hourDiff--;
-            startText.setText("Your event starts in " + Integer.toString(hourDiff) + "hours and "+ Integer.toString(minDiff)+"minutes.");
+            if(sysMin > startMin) {
+                hourDiff--;
+                minDiff += 60;
+            }
+            startText.setText("Your event starts in " + Integer.toString(hourDiff) + "hours and "+ Integer.toString(minDiff)+" minutes.");
         }
         if(startHour == sysHour && startMin >= sysMin) {
             int minDiff = startMin - sysMin;
@@ -81,8 +87,11 @@ public class EventConfirmation extends FragmentActivity{
         if (endHour > sysHour) {
             int hourDiff = endHour - sysHour;
             int minDiff = endMin - sysMin;
-            if(sysMin > endMin) hourDiff--;
-            endText.setText("Your event ends in " + Integer.toString(hourDiff) + "hours and "+ Integer.toString(minDiff)+"minutes.");
+            if(sysMin > endMin) {
+                hourDiff--;
+                minDiff += 60;
+            }
+            endText.setText("Your event ends in " + Integer.toString(hourDiff) + " hours and "+ Integer.toString(minDiff)+" minutes.");
         }
         if(endHour == sysHour && endMin >= sysMin) {
             int minDiff = endMin - sysMin;
