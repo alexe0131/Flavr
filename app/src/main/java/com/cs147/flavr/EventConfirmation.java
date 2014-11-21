@@ -18,6 +18,8 @@ import android.location.Geocoder;
 
 import java.util.List;
 import java.io.IOException;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class EventConfirmation extends FragmentActivity{
 
@@ -34,6 +36,7 @@ public class EventConfirmation extends FragmentActivity{
                 Address location = address.get(0);
                 if (location != null)
                     loc = new LatLng(location.getLatitude(), location.getLongitude());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -77,7 +80,7 @@ public class EventConfirmation extends FragmentActivity{
                 hourDiff--;
                 minDiff += 60;
             }
-            startText.setText("Your event starts in " + Integer.toString(hourDiff) + "hours and "+ Integer.toString(minDiff)+" minutes.");
+            startText.setText("Your event starts in " + Integer.toString(hourDiff) + " hours and "+ Integer.toString(minDiff)+" minutes.");
         }
         if(startHour == sysHour && startMin >= sysMin) {
             int minDiff = startMin - sysMin;
@@ -110,6 +113,8 @@ public class EventConfirmation extends FragmentActivity{
         LatLng location = getLocationFromAddress(eventInformation[3]);
         GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        Marker place = gMap.addMarker(new MarkerOptions()
+           .position(location));
         int[] eventTimes = eventInfo.getIntArrayExtra(createEvent.EVENT_TIMES);
         printEventInfo(eventInformation);
         printEventExpiry(eventTimes);
