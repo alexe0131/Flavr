@@ -53,7 +53,7 @@
 
         <activity
             android:name="com.cs147.flavr.GetFoodList"
-            android:label="@string/title_activity_get_food_list"
+            android:label="Food Events Near You"
             android:parentActivityName="com.cs147.flavr.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
