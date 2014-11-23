@@ -13,6 +13,14 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
 
+    public void giveFood(View view) {
+        Intent goToForm = new Intent(this, createEvent.class);
+        startActivity(goToForm);
+    }
+    public void getFood(View view) {
+        Intent goToEventList = new Intent(this, GetFoodList.class);
+        startActivity(goToEventList);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +54,5 @@ public class MainActivity extends Activity {
 
     /*Goes to the form view to create event when give food is clicked.
      */
-    public void giveFood(View view) {
-        Intent goToForm = new Intent(this, createEvent.class);
-        startActivity(goToForm);
-    }
+
 }
