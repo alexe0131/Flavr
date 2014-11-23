@@ -186,17 +186,41 @@
                 android:inputType="number"
                 android:layout_weight="1"/>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/row9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:padding="5dip" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:text="Image: "
+                android:textStyle="bold"
+                android:id="@+id/image_label"></TextView>
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:background="@drawable/roundedbutton"
+                android:text="Upload an image..."
+                android:textSize="14dp"
+                android:onClick="uploadImage"/>
+
+        </LinearLayout>
         <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:background="@drawable/roundedbuttongreen"
-        android:text="Submit Event"
-        android:id="@+id/submit"
-        android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:onClick="submitEvent"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundedbuttongreen"
+            android:text="Submit Event"
+            android:id="@+id/submit"
+            android:textSize="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:onClick="submitEvent"
             android:layout_marginBottom="25dp"
             android:layout_marginTop="25dp"/>
 
