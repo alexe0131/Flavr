@@ -15,7 +15,7 @@ import java.lang.String;
 import java.util.Calendar;
 import com.google.android.gms.maps.model.LatLng;
 import android.location.Geocoder;
-
+import android.widget.ImageView;
 import java.util.List;
 import java.io.IOException;
 import com.google.android.gms.maps.model.Marker;
@@ -30,16 +30,16 @@ public class EventConfirmation extends FragmentActivity{
         Geocoder coder = new Geocoder(this);
         List<Address> address;
         LatLng loc = null;
-            try {
-                address = coder.getFromLocationName(strAddress, 5);
-                if (address == null) return null;
-                Address location = address.get(0);
-                if (location != null)
-                    loc = new LatLng(location.getLatitude(), location.getLongitude());
+        try {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) return null;
+            Address location = address.get(0);
+            if (location != null)
+                loc = new LatLng(location.getLatitude(), location.getLongitude());
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         return loc;
@@ -60,6 +60,8 @@ public class EventConfirmation extends FragmentActivity{
         tags.setText("Tags: "+information[4]);
         TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
         capacity.setText("Capacity: "+information[5]);
+        ImageView eventImage = (ImageView) findViewById(R.id.event_image);
+        eventImage.setImageBitmap(createEvent.yourSelectedImage);
     }
     /* Retrieves the times that the user entered on the previous screen and uses these to
     * calculate how long until the start and end times the user is.
@@ -98,7 +100,7 @@ public class EventConfirmation extends FragmentActivity{
         }
         if(endHour == sysHour && endMin >= sysMin) {
             int minDiff = endMin - sysMin;
-            endText.setText("Your event expires in "+ Integer.toString(minDiff)+" minutes.");
+            endText.setText("Your event ends in "+ Integer.toString(minDiff)+" minutes.");
         }
 
     }
@@ -113,8 +115,8 @@ public class EventConfirmation extends FragmentActivity{
         LatLng location = getLocationFromAddress(eventInformation[3]);
         GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-//        Marker place = gMap.addMarker(new MarkerOptions()
-//           .position(location));
+        Marker place = gMap.addMarker(new MarkerOptions()
+                .position(location));
         int[] eventTimes = eventInfo.getIntArrayExtra(createEvent.EVENT_TIMES);
         printEventInfo(eventInformation);
         printEventExpiry(eventTimes);
