@@ -7,5 +7,6 @@
     <string name="title_activity_create_event">createEvent</string>
     <string name="title_activity_event_confirmation">Event Confirmation</string>
     <string name="title_activity_additional_information">Additional Information</string>
+    <string name="title_activity_get_food_list">GetFoodList</string>
 
 </resources>

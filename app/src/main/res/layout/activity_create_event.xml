@@ -11,9 +11,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="10dp"
-            android:text="* denotes required field"
+            android:layout_marginRight="15dp"
+            android:textSize="12dp"
+            android:text="&#8226; Required"
+            android:layout_gravity="right"
             android:id="@+id/required"/>
         <LinearLayout
             android:id="@+id/row1"
@@ -26,7 +27,8 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:textSize="16dp"
-                android:text="*Food description: "
+                android:text="&#8226;Food description: "
+                android:textStyle="bold"
                 android:id="@+id/food_type_label"></TextView>
             <EditText
                 android:layout_width="200dp"
@@ -41,13 +43,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:textSize="16dp"
-                android:text="*Event Title: "
+                android:text="&#8226; Event Title: "
+                android:textStyle="bold"
                 android:id="@+id/event_title_label"></TextView>
             <EditText
                 android:layout_width="200dp"
@@ -61,13 +64,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:textSize="16dp"
                 android:text="Description: "
+                android:textStyle="bold"
                 android:id="@+id/description_label"></TextView>
             <EditText
                 android:layout_width="200dp"
@@ -82,19 +86,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:textSize="16dp"
-                android:text="*Location: "
+                android:text="&#8226; Location: "
+                android:textStyle="bold"
                 android:id="@+id/location_label"></TextView>
             <EditText
                 android:layout_width="200dp"
                 android:layout_height="100dp"
                 android:id="@+id/location"
-                android:hint="Enter the full address of your event here"
+                android:hint="Enter the address of your event here"
                 android:layout_weight="1"/>
         </LinearLayout>
         <LinearLayout
@@ -107,7 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:textSize="16dp"
-                android:text="*Start Time: "
+                android:text="&#8226; Start Time: "
+                android:textStyle="bold"
                 android:id="@+id/start_time_label"
                 android:layout_marginTop="75dp">
             </TextView>
@@ -126,7 +132,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:textSize="16dp"
-                android:text="*End Time: "
+                android:text="&#8226; End Time: "
+                android:textStyle="bold"
                 android:id="@+id/end_time_label"
                 android:layout_marginTop="75dp">
             </TextView>
@@ -140,19 +147,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:textSize="16dp"
                 android:text="Tags: "
+                android:textStyle="bold"
                 android:id="@+id/tags_label"></TextView>
             <EditText
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:id="@+id/tags"
-                android:hint="Enter keywords for your event"
+                android:hint="Enter tags separated by commas"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -161,13 +169,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:textSize="16dp"
                 android:text="Capacity: "
+                android:textStyle="bold"
                 android:id="@+id/capacity_label"></TextView>
             <EditText
                 android:layout_width="200dp"
@@ -181,7 +190,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/roundedbuttongreen"
         android:text="Submit Event"
         android:id="@+id/submit"
         android:textSize="20dp"

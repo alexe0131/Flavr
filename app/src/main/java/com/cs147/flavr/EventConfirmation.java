@@ -113,8 +113,8 @@ public class EventConfirmation extends FragmentActivity{
         LatLng location = getLocationFromAddress(eventInformation[3]);
         GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        Marker place = gMap.addMarker(new MarkerOptions()
-           .position(location));
+//        Marker place = gMap.addMarker(new MarkerOptions()
+//           .position(location));
         int[] eventTimes = eventInfo.getIntArrayExtra(createEvent.EVENT_TIMES);
         printEventInfo(eventInformation);
         printEventExpiry(eventTimes);
