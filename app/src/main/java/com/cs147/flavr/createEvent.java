@@ -96,11 +96,13 @@ public class createEvent extends Activity {
         int endMinute = endTimer.getCurrentMinute();
         times[2] = endHour;
         times[3] = endMinute;
-            Intent submit = new Intent(this, EventConfirmation.class);
-            Bundle event = new Bundle();
+        Intent submit = new Intent(this, EventConfirmation.class);
+        Intent addEvent = new Intent(this, GetFoodList.class);
+        Bundle event = new Bundle();
         event.putIntArray(EVENT_TIMES, times);
         event.putStringArray(EVENT_STRINGS, eventInformation);
         submit.putExtras(event);
+        addEvent.putExtras(event);
         startActivity(submit);
     }
     }
