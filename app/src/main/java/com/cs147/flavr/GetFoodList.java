@@ -17,6 +17,8 @@ import android.widget.TableRow.LayoutParams;
 
 
 public class GetFoodList extends Activity {
+    /* These variables are the string names of the ArgMaps holding our hard-coded information.
+     */
     public static final String FOOD = "Food";
     public static final String EVENT = "Event";
     public static final String DESCRIPTION = "Description";
@@ -25,31 +27,20 @@ public class GetFoodList extends Activity {
     public static final String END_TIME = "End Time";
     public static final String TAGS = "Tags";
     public static final String CAPACITY = "Capacity";
+    public static final String IMAGE = "Image";
 
 
 
     @Override
+    /* Creates an eventlistadapter to only load the linear layouts of the events being shown
+     * in the listview on screen at the current time.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_food_list);
-        int showNEvents = 15;
         ListView eventPage = (ListView) findViewById(R.id.eventpage);
         EventListAdaptr eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
         eventPage.setAdapter(eventAdapter);
-//            LinearLayout newLinLayout = new LinearLayout(this);
-//            int height = 150;
-//            newLinLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 150));
-//            newLinLayout.setOrientation(LinearLayout.HORIZONTAL);
-//            TextView food = new TextView(this);
-//            food.setText(currEvent.getString(FOOD));
-//            TextView event = new TextView(this);
-//            food.setText(currEvent.getString(EVENT));
-//            TextView location = new TextView(this);
-//            food.setText(currEvent.getString(LOCATION));
-//            newLinLayout.addView(food);
-//            newLinLayout.addView(event);
-//            newLinLayout.addView(location);
-//            eventPage.addView(newLinLayout);
         }
 
 
