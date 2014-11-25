@@ -9,10 +9,26 @@ import android.content.Intent;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
+import net.java.jddac.common.type.ArgMap;
+import net.java.jddac.util.StringUtil;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends Activity {
 
+    public List<ArgMap> readAndroidEmbeddedCSVFile() {
+        InputStream is = getResources().openRawResource(R.raw.event_data);
+        try {
+            return StringUtil.readCSVStream(is);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<ArgMap>();
+        }
+    }
+    public static List<ArgMap> events;
     public void giveFood(View view) {
         Intent goToForm = new Intent(this, createEvent.class);
         startActivity(goToForm);
@@ -25,6 +41,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MainActivity.events = readAndroidEmbeddedCSVFile();
 
     }
 
