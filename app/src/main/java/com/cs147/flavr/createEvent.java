@@ -17,6 +17,8 @@ import java.io.InputStream;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import net.java.jddac.common.type.ArgMap;
+
 
 public class createEvent extends Activity {
     //Temporary array for event string information.
@@ -90,6 +92,11 @@ public class createEvent extends Activity {
             event.putStringArray(EVENT_STRINGS, eventInformation);
             submit.putExtras(event);
             addEvent.putExtras(event);
+            ArgMap newEvent = new ArgMap();
+            newEvent.put(GetFoodList.FOOD, foodType);
+            newEvent.put(GetFoodList.EVENT, eventTitle);
+            newEvent.put(GetFoodList.LOCATION, location);
+            MainActivity.events.add(0, newEvent);
             startActivity(submit);
         }
     }
