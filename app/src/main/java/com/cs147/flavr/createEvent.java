@@ -29,6 +29,7 @@ public class createEvent extends Activity {
     public final static int SELECT_PHOTO = 100;
 
     public static Bitmap yourSelectedImage;
+    public static Uri selectedImage;
 
     /*Extracts string from an edit text field where the user inputs data.
     */
@@ -86,16 +87,15 @@ public class createEvent extends Activity {
             times[2] = endHour;
             times[3] = endMinute;
             Intent submit = new Intent(this, EventConfirmation.class);
-            Intent addEvent = new Intent(this, GetFoodList.class);
             Bundle event = new Bundle();
             event.putIntArray(EVENT_TIMES, times);
             event.putStringArray(EVENT_STRINGS, eventInformation);
             submit.putExtras(event);
-            addEvent.putExtras(event);
             ArgMap newEvent = new ArgMap();
             newEvent.put(GetFoodList.FOOD, foodType);
             newEvent.put(GetFoodList.EVENT, eventTitle);
             newEvent.put(GetFoodList.LOCATION, location);
+            newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
             MainActivity.events.add(0, newEvent);
             startActivity(submit);
         }
@@ -135,7 +135,7 @@ public class createEvent extends Activity {
         switch(requestCode) {
             case SELECT_PHOTO:
                 if(resultCode == RESULT_OK) {
-                    Uri selectedImage = imageReturnedIntent.getData();
+                    selectedImage = imageReturnedIntent.getData();
                     try {
                         InputStream imageStream = getContentResolver().openInputStream(selectedImage);
                         yourSelectedImage = BitmapFactory.decodeStream(imageStream);

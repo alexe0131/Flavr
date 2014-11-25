@@ -2,10 +2,14 @@ package com.cs147.flavr;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.java.jddac.common.type.ArgMap;
@@ -19,13 +23,14 @@ public class EventListAdaptr extends ArrayAdapter<ArgMap> {
     List<ArgMap> events;
     Context context;
     int resourceId;
-
+    public static Bitmap defaultPicture;
     public EventListAdaptr(Context context, int resourceId,
                            List<ArgMap> list) {
         super(context, resourceId, list);
         events = list;
         this.context = context;
         this.resourceId = resourceId;
+        defaultPicture = BitmapFactory.decodeResource(context.getResources(), R.drawable.defaultfood);
     }
 
     @Override
@@ -48,6 +53,8 @@ public class EventListAdaptr extends ArrayAdapter<ArgMap> {
         eventTitle.setText(event.getString(GetFoodList.EVENT,""));
         TextView eventLocation = (TextView) rowView.findViewById(R.id.event_location);
         eventLocation.setText(event.getString(GetFoodList.LOCATION,""));
+        ImageView eventImage = (ImageView) rowView.findViewById(R.id.event_picture);
+        eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE, defaultPicture));
          return rowView;
     }
 }

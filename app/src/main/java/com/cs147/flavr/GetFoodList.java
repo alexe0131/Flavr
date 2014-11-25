@@ -25,6 +25,7 @@ public class GetFoodList extends Activity {
     public static final String END_TIME = "End Time";
     public static final String TAGS = "Tags";
     public static final String CAPACITY = "Capacity";
+    public static final String IMAGE = "Image";
 
 
 
