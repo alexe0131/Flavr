@@ -39,7 +39,6 @@ public class createEvent extends Activity {
     }
 
     private void giveToastError(String error) {
-        Toast errorMessage;
         if(error == "foodType")  Toast.makeText(getApplicationContext(), "Please enter a valid food type.", Toast.LENGTH_LONG).show();
         else if(error == "eventTitle")  Toast.makeText(getApplicationContext(), "Please enter a valid event title.", Toast.LENGTH_LONG).show();
         else if(error == "location")  Toast.makeText(getApplicationContext(), "Please enter a valid location.", Toast.LENGTH_LONG).show();
@@ -50,6 +49,21 @@ public class createEvent extends Activity {
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, SELECT_PHOTO);
 
+    }
+
+    private int[] parseTimes() {
+        int[] times = new int[4];
+        TimePicker startTimer = (TimePicker) findViewById(R.id.start_time);
+        int startHour = startTimer.getCurrentHour();
+        int startMinute = startTimer.getCurrentMinute();
+        times[0] = startHour;
+        times[1] = startMinute;
+        TimePicker endTimer = (TimePicker) findViewById(R.id.end_time);
+        int endHour = endTimer.getCurrentHour();
+        int endMinute = endTimer.getCurrentMinute();
+        times[2] = endHour;
+        times[3] = endMinute;
+        return times;
     }
     /*Upon the clicking of the submit button, reads all the strings and times from the event listing and puts them into an respective arrays to be passed into
     *the next activity of confirming the event. Bundles these into an extra for the intent
@@ -73,30 +87,19 @@ public class createEvent extends Activity {
             eventInformation[2] = description;
             eventInformation[3] = location;
             eventInformation[4] = tags;
-
             eventInformation[5] = capacity;
-            int[] times = new int[4];
-            TimePicker startTimer = (TimePicker) findViewById(R.id.start_time);
-            int startHour = startTimer.getCurrentHour();
-            int startMinute = startTimer.getCurrentMinute();
-            times[0] = startHour;
-            times[1] = startMinute;
-            TimePicker endTimer = (TimePicker) findViewById(R.id.end_time);
-            int endHour = endTimer.getCurrentHour();
-            int endMinute = endTimer.getCurrentMinute();
-            times[2] = endHour;
-            times[3] = endMinute;
-            Intent submit = new Intent(this, EventConfirmation.class);
-            Bundle event = new Bundle();
-            event.putIntArray(EVENT_TIMES, times);
-            event.putStringArray(EVENT_STRINGS, eventInformation);
-            submit.putExtras(event);
+            int [] timeInfo = parseTimes();
             ArgMap newEvent = new ArgMap();
             newEvent.put(GetFoodList.FOOD, foodType);
             newEvent.put(GetFoodList.EVENT, eventTitle);
             newEvent.put(GetFoodList.LOCATION, location);
             newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
             MainActivity.events.add(0, newEvent);
+            Intent submit = new Intent(this, EventConfirmation.class);
+            Bundle event = new Bundle();
+            event.putIntArray(EVENT_TIMES, timeInfo);
+            event.putStringArray(EVENT_STRINGS, eventInformation);
+            submit.putExtras(event);
             startActivity(submit);
         }
     }
@@ -130,6 +133,8 @@ public class createEvent extends Activity {
         return super.onOptionsItemSelected(item);
     }
     @Override
+    /* Gets image from user for event and converts to Bitmap
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         switch(requestCode) {

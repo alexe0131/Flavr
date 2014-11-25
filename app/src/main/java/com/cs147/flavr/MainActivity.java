@@ -19,6 +19,9 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
+    public static List<ArgMap> events;
+    /*Reads in the hard-coded information through a CSV files using JDDAC library.
+     */
     public List<ArgMap> readAndroidEmbeddedCSVFile() {
         InputStream is = getResources().openRawResource(R.raw.event_data);
         try {
@@ -28,11 +31,15 @@ public class MainActivity extends Activity {
             return new ArrayList<ArgMap>();
         }
     }
-    public static List<ArgMap> events;
+
+    /* Go to form to give food
+     */
     public void giveFood(View view) {
         Intent goToForm = new Intent(this, createEvent.class);
         startActivity(goToForm);
     }
+    /* Go to list of food events.
+     */
     public void getFood(View view) {
         Intent goToEventList = new Intent(this, GetFoodList.class);
         startActivity(goToEventList);
@@ -67,9 +74,4 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-    /*Goes to the form view to create event when give food is clicked.
-     */
-
 }
