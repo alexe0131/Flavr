@@ -59,6 +59,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cs147.flavr.MainActivity" />
         </activity>
+        <activity
+            android:name="com.cs147.flavr.EventInformation"
+            android:label="Event Information" >
+        </activity>
     </application>
 
 </manifest>
