@@ -2,6 +2,7 @@ package com.cs147.flavr;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,9 @@ import java.util.List;
 import java.io.InputStream;
 import java.util.ArrayList;
 import net.java.jddac.util.StringUtil;
+
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +32,7 @@ public class GetFoodList extends Activity {
     public static final String TAGS = "Tags";
     public static final String CAPACITY = "Capacity";
     public static final String IMAGE = "Image";
+    public static final String EXTRA = "extra";
 
 
 
@@ -41,6 +46,15 @@ public class GetFoodList extends Activity {
         ListView eventPage = (ListView) findViewById(R.id.eventpage);
         EventListAdaptr eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
         eventPage.setAdapter(eventAdapter);
+        eventPage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ArgMap event = (ArgMap) view.getTag();
+                Intent eventInfo = new Intent(getApplicationContext(), EventInformation.class);
+                eventInfo.putExtra(EXTRA, i);
+                startActivity(eventInfo);
+            }
+        });
         }
 
 

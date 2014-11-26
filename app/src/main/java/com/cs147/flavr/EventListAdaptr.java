@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import net.java.jddac.common.type.ArgMap;
 
@@ -54,7 +55,9 @@ public class EventListAdaptr extends ArrayAdapter<ArgMap> {
         }
 
         // Fill with goodies
+
         ArgMap event = events.get(position);
+        rowView.setTag(event);
         TextView eventFood = (TextView) rowView.findViewById(R.id.event_food);
         eventFood.setText(event.getString(GetFoodList.FOOD, ""));
         TextView eventTitle = (TextView) rowView.findViewById(R.id.event_event);
