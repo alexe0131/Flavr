@@ -66,6 +66,6 @@ public class EventListAdaptr extends ArrayAdapter<ArgMap> {
         eventLocation.setText(event.getString(GetFoodList.LOCATION,""));
         ImageView eventImage = (ImageView) rowView.findViewById(R.id.event_picture);
         eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE, defaultPicture));
-         return rowView;
+        return rowView;
     }
 }

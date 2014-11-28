@@ -9,5 +9,6 @@
     <string name="title_activity_additional_information">Additional Information</string>
     <string name="title_activity_get_food_list">GetFoodList</string>
     <string name="title_activity_event_information">EventInformation</string>
+    <string name="title_activity_edit_event">EditEvent</string>
 
 </resources>

@@ -9,9 +9,10 @@
         android:id = "@+id/event_picture"/>
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    android:layout_marginTop="5dp"
-    android:layout_marginLeft="5dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp">
+
         <TextView
             android:layout_width = "match_parent"
             android:layout_height = "wrap_content"
