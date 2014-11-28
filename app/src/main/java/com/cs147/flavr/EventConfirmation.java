@@ -21,8 +21,13 @@ import java.io.IOException;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import net.java.jddac.common.type.ArgMap;
+
 public class EventConfirmation extends FragmentActivity{
 
+    public ArgMap event;
+    public final static String EVENT_STRINGS = "event strings";
+    public final static String EVENT_TIMES = "event times";
     /* Looks up the address that the user enters and finds the latitude and longitude of that
     * location to be looked up on a map.
     */
@@ -47,21 +52,22 @@ public class EventConfirmation extends FragmentActivity{
 
     /* Iterates through the array of event info and prints it out on the confirmation screen.
     */
-    public void printEventInfo(String [] information) {
-        TextView eventTitle = (TextView) findViewById(R.id.confirmation_food);
-        eventTitle.setText(information[0]);
-        TextView food = (TextView) findViewById(R.id.confirmation_event);
-        food.setText("Event: "+information[1]);
-        TextView description = (TextView) findViewById(R.id.confirmation_description);
-        description.setText("Description: "+information[2]);
-        TextView location = (TextView) findViewById(R.id.confirmation_location);
-        location.setText("Location: "+information[3]);
-        TextView tags = (TextView) findViewById(R.id.confirmation_tags);
-        tags.setText("Tags: "+information[4]);
-        TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
-        capacity.setText("Capacity: "+information[5]);
-        ImageView eventImage = (ImageView) findViewById(R.id.event_image);
-        eventImage.setImageBitmap(createEvent.yourSelectedImage);
+    public void printEventInfo(ArgMap event) {
+            TextView eventTitle = (TextView) findViewById(R.id.confirmation_food);
+            eventTitle.setText(event.getString(GetFoodList.FOOD));
+            TextView food = (TextView) findViewById(R.id.confirmation_event);
+            food.setText(event.getString(GetFoodList.EVENT));
+            TextView description = (TextView) findViewById(R.id.confirmation_description);
+            description.setText(event.getString(GetFoodList.DESCRIPTION));
+            TextView location = (TextView) findViewById(R.id.confirmation_location);
+            location.setText(event.getString(GetFoodList.LOCATION));
+            TextView tags = (TextView) findViewById(R.id.confirmation_tags);
+            tags.setText(event.getString(GetFoodList.TAGS));
+            TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
+            capacity.setText(event.getString(GetFoodList.CAPACITY));
+            ImageView eventImage = (ImageView) findViewById(R.id.event_image);
+            eventImage.setImageBitmap(createEvent.yourSelectedImage);
+
     }
     /* Retrieves the times that the user entered on the previous screen and uses these to
     * calculate how long until the start and end times the user is.
@@ -104,6 +110,11 @@ public class EventConfirmation extends FragmentActivity{
         }
 
     }
+
+    private void editEvent() {
+        Intent edit = new Intent(this, EditEvent.class);
+        startActivity(edit);
+    }
     /* Retrieves bundled information from create event activity, updates the map location
     * accordingly, and calls the methods to print the event information and times
     */
@@ -111,14 +122,15 @@ public class EventConfirmation extends FragmentActivity{
         super.onCreate(savedInstanceState);
         Intent eventInfo = getIntent();
         setContentView(R.layout.activity_event_confirmation);
-        String[] eventInformation = eventInfo.getStringArrayExtra(createEvent.EVENT_STRINGS);
-        LatLng location = getLocationFromAddress(eventInformation[3]);
+        ArgMap event = MainActivity.events.get(0);
+        LatLng location = getLocationFromAddress(event.getString(GetFoodList.LOCATION));
         GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         Marker place = gMap.addMarker(new MarkerOptions()
                 .position(location));
-        int[] eventTimes = eventInfo.getIntArrayExtra(createEvent.EVENT_TIMES);
-        printEventInfo(eventInformation);
+        int[]eventTimes = eventInfo.getIntArrayExtra(createEvent.EVENT_TIMES);
+        if(eventTimes == null) eventTimes = eventInfo.getIntArrayExtra(EditEvent.TIMES);
+        printEventInfo(event);
         printEventExpiry(eventTimes);
     }
 
@@ -131,17 +143,14 @@ public class EventConfirmation extends FragmentActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.edit_event:
+                editEvent();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
 }

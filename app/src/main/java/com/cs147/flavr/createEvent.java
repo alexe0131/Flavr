@@ -13,6 +13,8 @@ import java.lang.String;
 import android.widget.Toast;
 import android.net.Uri;
 import java.io.InputStream;
+import java.util.List;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -20,6 +22,8 @@ import net.java.jddac.common.type.ArgMap;
 
 
 public class createEvent extends Activity {
+
+    public List<ArgMap> myEvents;
     //Temporary array for event string information.
     public final static String EVENT_STRINGS = "temp";
     //Temporary array for event time information.
@@ -69,8 +73,6 @@ public class createEvent extends Activity {
     * and goes to event confirmation.
     */
     public void submitEvent(View view) {
-
-        String[] eventInformation = new String[6];
         String foodType = extractStringFromID(R.id.food_type);
         String eventTitle = extractStringFromID(R.id.event_title);
         String description = extractStringFromID(R.id.description);
@@ -81,27 +83,25 @@ public class createEvent extends Activity {
         else if (eventTitle.length() == 0) giveToastError("eventTitle");
         else if (location.length() == 0) giveToastError("location");
         else {
-            eventInformation[0] = foodType;
-            eventInformation[1] = eventTitle;
-            eventInformation[2] = description;
-            eventInformation[3] = location;
-            eventInformation[4] = tags;
-            eventInformation[5] = capacity;
+
             int [] timeInfo = parseTimes();
             ArgMap newEvent = new ArgMap();
             newEvent.put(GetFoodList.FOOD, foodType);
             newEvent.put(GetFoodList.EVENT, eventTitle);
             newEvent.put(GetFoodList.LOCATION, location);
+            newEvent.put(GetFoodList.DESCRIPTION, description);
+            newEvent.put(GetFoodList.CAPACITY, capacity);
+            newEvent.put(GetFoodList.TAGS, tags);
             newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
             MainActivity.events.add(0, newEvent);
             Intent submit = new Intent(this, EventConfirmation.class);
             Bundle event = new Bundle();
             event.putIntArray(EVENT_TIMES, timeInfo);
-            event.putStringArray(EVENT_STRINGS, eventInformation);
             submit.putExtras(event);
             startActivity(submit);
         }
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -37,9 +37,9 @@ public class EventInformation extends Activity {
         TextView location = (TextView) findViewById(R.id.get_event_location);
         location.setText(event.getString(GetFoodList.LOCATION));
         TextView tags = (TextView) findViewById(R.id.get_event_tags);
-        tags.setText(event.getString(GetFoodList.TAGS));
+        tags.setText(event.getString("Tags: "+GetFoodList.TAGS));
         TextView capacity = (TextView) findViewById(R.id.get_event_capacity);
-        capacity.setText(event.getString(GetFoodList.CAPACITY));
+        capacity.setText(event.getString("Capacity: "+GetFoodList.CAPACITY));
         ImageView eventImage = (ImageView) findViewById(R.id.get_event_image);
         eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE, EventListAdaptr.defaultPicture));
     }
