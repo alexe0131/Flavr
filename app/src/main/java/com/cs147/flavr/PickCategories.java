@@ -13,6 +13,9 @@ import java.util.List;
 
 public class PickCategories extends Activity {
     public List<String> categories = new ArrayList<String>();
+    public void saveEvent(View view) {
+        finish();
+    }
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();

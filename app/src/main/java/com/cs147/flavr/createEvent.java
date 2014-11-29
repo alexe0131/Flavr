@@ -75,6 +75,10 @@ public class createEvent extends Activity {
         return times;
     }
 
+    public void dietaryAccomodations(View view) {
+        Intent diet = new Intent(this, DietaryAccomodations.class);
+        startActivity(diet);
+    }
     public void pickCategories(View view) {
         Intent categories = new Intent(this, PickCategories.class);
         startActivity(categories);
