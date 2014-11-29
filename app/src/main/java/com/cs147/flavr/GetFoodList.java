@@ -43,6 +43,7 @@ public class GetFoodList extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_food_list);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         ListView eventPage = (ListView) findViewById(R.id.eventpage);
         EventListAdaptr eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
         eventPage.setAdapter(eventAdapter);

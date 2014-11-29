@@ -65,12 +65,20 @@
         <activity
             android:name="com.cs147.flavr.EventInformation"
             android:label="Event Information"
-            android:parentActivityName="com.cs147.flavr.GetFoodList">
+            android:parentActivityName="com.cs147.flavr.GetFoodList" >
         </activity>
         <activity
             android:name="com.cs147.flavr.EditEvent"
             android:label="@string/title_activity_edit_event"
-            android:parentActivityName="com.cs147.flavr.EventConfirmation">
+            android:parentActivityName="com.cs147.flavr.EventConfirmation" >
+        </activity>
+        <activity
+            android:name="com.cs147.flavr.PickCategories"
+            android:label="@string/title_activity_pick_categories"
+            android:parentActivityName="com.cs147.flavr.createEvent" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs147.flavr.createEvent" />
         </activity>
     </application>
 
