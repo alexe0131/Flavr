@@ -179,6 +179,18 @@
             android:layout_marginLeft="70dp">
         </CheckBox>
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundedbuttongreen"
+            android:text="Save"
+            android:id="@+id/save_categories"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:onClick="saveEvent"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="25dp"/>
 
 
 

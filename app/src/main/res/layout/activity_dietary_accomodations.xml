@@ -1,0 +1,83 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Dietary Accomodations"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"/>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_kosher"
+            android:text ="Kosher"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_vegetarian"
+            android:text ="Vegetarian"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_vegan"
+            android:text ="Vegan"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_gluten"
+            android:text ="Gluten-free"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+            <CheckBox
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/checkbox_peanut"
+                android:text ="Peanut Allergy"
+                android:onClick="onCheckboxClicked"
+                android:layout_marginLeft="70dp">
+
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_lactose"
+            android:text ="Lactose Intolerant"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+
+        </CheckBox>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundedbuttongreen"
+            android:text="Save"
+            android:id="@+id/save_diet"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:onClick="saveEvent"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="25dp"/>
+
+    </LinearLayout>
+</ScrollView>

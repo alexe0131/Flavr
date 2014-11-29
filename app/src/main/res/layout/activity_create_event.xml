@@ -142,19 +142,37 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/end_time"/>
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="200dp"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:background="@drawable/roundedbuttonblue"
                 android:text="Select Categories"
                 android:id="@+id/pick_categories"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:layout_gravity="center"
                 android:onClick="pickCategories"
                 android:layout_marginBottom="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"/>
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@drawable/roundedbuttonblue"
+                android:text="Dietary Accomodations"
+                android:id="@+id/dietary_accomodations"
+                android:textSize="15dp"
+                android:layout_marginLeft="20dp"
+                android:onClick="dietaryAccomodations"
+                android:layout_marginBottom="25dp"
                 android:layout_marginTop="25dp"/>
+            </LinearLayout>
+
         <LinearLayout
             android:id="@+id/row7"
             android:layout_width="match_parent"

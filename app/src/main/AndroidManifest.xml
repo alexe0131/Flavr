@@ -80,6 +80,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cs147.flavr.createEvent" />
         </activity>
+        <activity
+            android:name="com.cs147.flavr.DietaryAccomodations"
+            android:label="@string/title_activity_dietary_accomodations"
+            android:parentActivityName="com.cs147.flavr.createEvent" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs147.flavr.createEvent" />
+        </activity>
     </application>
 
 </manifest>

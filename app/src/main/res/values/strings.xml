@@ -11,5 +11,6 @@
     <string name="title_activity_event_information">EventInformation</string>
     <string name="title_activity_edit_event">EditEvent</string>
     <string name="title_activity_pick_categories">PickCategories</string>
+    <string name="title_activity_dietary_accomodations">DietaryAccomodations</string>
 
 </resources>
