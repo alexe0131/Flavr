@@ -102,6 +102,7 @@ public class EditEvent extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_event);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         ArgMap editEvent = MainActivity.events.get(0);
         enterOldData(editEvent);
     }

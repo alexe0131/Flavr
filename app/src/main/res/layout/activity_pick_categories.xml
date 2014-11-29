@@ -1,0 +1,189 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Categories"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"/>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_asian"
+            android:text ="Asian Cuisine"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp">
+        </CheckBox>
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_baked"
+            android:text ="Baked Goods"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_beverages"
+            android:text ="Beverages"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_bbq"
+            android:text ="BBQ Food"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp"
+            >
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_coffee"
+            android:text ="Coffee or Tea"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp"
+            >
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_dessert"
+            android:text ="Dessert"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_doughnut"
+            android:text ="Doughnut"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp"            >
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_ethnic"
+            android:text ="Ethnic Foods"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_fastfood"
+            android:text ="Fast Food"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_fish"
+            android:text ="Fish and Seafood"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_froyo"
+            android:text ="Frozen Yogurt"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_icecream"
+            android:text ="Ice Cream"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_meat"
+            android:text ="Meat"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_mexican"
+            android:text ="Mexican Food"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_sandwiches"
+            android:text ="Sandwiches"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_pancakes"
+            android:text ="Pancakes or Waffles"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_pizza"
+            android:text ="Pizza"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_soupsalad"
+            android:text ="Soup and Salad"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_snacks"
+            android:text ="Snacks"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/checkbox_protein"
+            android:text ="Various Protein"
+            android:onClick="onCheckboxClicked"
+            android:layout_marginLeft="70dp">
+        </CheckBox>
+
+
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>

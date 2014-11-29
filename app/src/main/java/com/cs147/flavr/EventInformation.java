@@ -104,6 +104,7 @@ public class EventInformation extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_information);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         Intent eventInfo = getIntent();
         int listPosition = 0;
         listPosition = eventInfo.getIntExtra(GetFoodList.EXTRA, listPosition);

@@ -33,6 +33,12 @@ public class createEvent extends Activity {
 
     public static Bitmap yourSelectedImage;
     public static Uri selectedImage;
+    static final String STATE_FOOD = "saveFood";
+    static final String STATE_EVENT = "saveEvent";
+    static final String STATE_DESCRIPTION = "saveDescription";
+    static final String STATE_LOCATION = "saveLocation";
+    static final String STATE_TAGS = "saveTags";
+    static final String STATE_CAPACITY = "saveCapacity";
 
     /*Extracts string from an edit text field where the user inputs data.
     */
@@ -67,6 +73,11 @@ public class createEvent extends Activity {
         times[2] = endHour;
         times[3] = endMinute;
         return times;
+    }
+
+    public void pickCategories(View view) {
+        Intent categories = new Intent(this, PickCategories.class);
+        startActivity(categories);
     }
     /*Upon the clicking of the submit button, reads all the strings and times from the event listing and puts them into an respective arrays to be passed into
     *the next activity of confirming the event. Bundles these into an extra for the intent
@@ -106,7 +117,24 @@ public class createEvent extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            // Restore value of members from saved state
+            EditText food = (EditText) findViewById(R.id.food_type);
+            EditText event = (EditText) findViewById(R.id.event_title);
+            EditText description = (EditText) findViewById(R.id.description);
+            EditText location = (EditText) findViewById(R.id.location);
+            EditText tags = (EditText) findViewById(R.id.tags);
+            EditText capacity = (EditText) findViewById(R.id.capacity);
+            food.setText(savedInstanceState.getString(STATE_FOOD));
+            event.setText(savedInstanceState.getString(STATE_EVENT));
+            description.setText(savedInstanceState.getString(STATE_DESCRIPTION));
+            location.setText(savedInstanceState.getString(STATE_LOCATION));
+            tags.setText(savedInstanceState.getString(STATE_TAGS));
+            capacity.setText(savedInstanceState.getString(STATE_CAPACITY));
+
+        }
         setContentView(R.layout.activity_create_event);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
 
@@ -148,6 +176,23 @@ public class createEvent extends Activity {
                     }
                 }
         }
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        EditText food = (EditText) findViewById(R.id.food_type);
+        EditText event = (EditText) findViewById(R.id.event_title);
+        EditText description = (EditText) findViewById(R.id.description);
+        EditText location = (EditText) findViewById(R.id.location);
+        EditText tags = (EditText) findViewById(R.id.tags);
+        EditText capacity = (EditText) findViewById(R.id.capacity);
+        savedInstanceState.putString(STATE_FOOD, food.getText().toString());
+        savedInstanceState.putString(STATE_EVENT, event.getText().toString());
+        savedInstanceState.putString(STATE_DESCRIPTION, description.getText().toString());
+        savedInstanceState.putString(STATE_LOCATION, location.getText().toString());
+        savedInstanceState.putString(STATE_TAGS, tags.getText().toString());
+        savedInstanceState.putString(STATE_CAPACITY, capacity.getText().toString());
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
     }
 }
 

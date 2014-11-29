@@ -122,6 +122,7 @@ public class EventConfirmation extends FragmentActivity{
         super.onCreate(savedInstanceState);
         Intent eventInfo = getIntent();
         setContentView(R.layout.activity_event_confirmation);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         ArgMap event = MainActivity.events.get(0);
         LatLng location = getLocationFromAddress(event.getString(GetFoodList.LOCATION));
         GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
