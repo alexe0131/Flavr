@@ -13,6 +13,7 @@ import java.lang.String;
 import android.widget.Toast;
 import android.net.Uri;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.graphics.Bitmap;
@@ -83,6 +84,22 @@ public class createEvent extends Activity {
         Intent categories = new Intent(this, PickCategories.class);
         startActivity(categories);
     }
+    public void determineCategories(ArgMap event) {
+        for (String string : MainActivity.allCategories) {
+            if (PickCategories.categories.indexOf(string) != -1) {
+                if (MainActivity.categories != null && MainActivity.categories.get(string) != null) {
+                    List<ArgMap> category = MainActivity.categories.get(string);
+                    category.add(event);
+                    MainActivity.categories.put(string, category);
+                }
+                else if(MainActivity.categories != null){
+                    List<ArgMap> category = new ArrayList<ArgMap>();
+                    category.add(event);
+                    MainActivity.categories.put(string, category);
+                }
+            }
+        }
+    }
     /*Upon the clicking of the submit button, reads all the strings and times from the event listing and puts them into an respective arrays to be passed into
     *the next activity of confirming the event. Bundles these into an extra for the intent
     * and goes to event confirmation.
@@ -109,6 +126,7 @@ public class createEvent extends Activity {
             newEvent.put(GetFoodList.TAGS, tags);
             newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
             MainActivity.events.add(0, newEvent);
+            determineCategories(newEvent);
             Intent submit = new Intent(this, EventConfirmation.class);
             Bundle event = new Bundle();
             event.putIntArray(EVENT_TIMES, timeInfo);

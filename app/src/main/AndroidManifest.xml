@@ -69,12 +69,12 @@
         </activity>
         <activity
             android:name="com.cs147.flavr.EditEvent"
-            android:label="@string/title_activity_edit_event"
+            android:label="Edit Your Event"
             android:parentActivityName="com.cs147.flavr.EventConfirmation" >
         </activity>
         <activity
             android:name="com.cs147.flavr.PickCategories"
-            android:label="@string/title_activity_pick_categories"
+            android:label="Select Food Categories"
             android:parentActivityName="com.cs147.flavr.createEvent" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -82,11 +82,27 @@
         </activity>
         <activity
             android:name="com.cs147.flavr.DietaryAccomodations"
-            android:label="@string/title_activity_dietary_accomodations"
+            android:label="Dietary Accommodations"
             android:parentActivityName="com.cs147.flavr.createEvent" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cs147.flavr.createEvent" />
+        </activity>
+        <activity
+            android:name="com.cs147.flavr.FilterBy"
+            android:label="Filter By..."
+            android:parentActivityName="com.cs147.flavr.GetFoodList" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs147.flavr.GetFoodList" />
+        </activity>
+        <activity
+            android:name="com.cs147.flavr.FilterCategory"
+            android:label="Filter By Category"
+            android:parentActivityName="com.cs147.flavr.FilterBy" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs147.flavr.FilterBy" />
         </activity>
     </application>
 

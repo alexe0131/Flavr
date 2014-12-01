@@ -14,12 +14,16 @@ import net.java.jddac.util.StringUtil;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class MainActivity extends Activity {
-
+    public static HashMap<String, List<ArgMap>> categories = new HashMap<String, List<ArgMap>>(30);
     public static List<ArgMap> events;
+    public static List<String> allCategories = Arrays.asList("Asian Cuisine", "Baked Foods", "BBQ Food", "Beverages", "Coffee or Tea", "Dessert", "Doughnuts", "Ethnic Food", "Fast Food",
+            "Fish or Seafood", "Frozen Yogurt", "Ice Cream", "Meat", "Mexican Food", "Pancakes or Waffles", "Pizza", "Various Protein", "Sandwiches", "Snacks", "Soup or Salad");
     /*Reads in the hard-coded information through a CSV files using JDDAC library.
      */
     public List<ArgMap> readAndroidEmbeddedCSVFile() {

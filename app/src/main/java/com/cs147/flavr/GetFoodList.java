@@ -34,7 +34,10 @@ public class GetFoodList extends Activity {
     public static final String IMAGE = "Image";
     public static final String EXTRA = "extra";
 
-
+    private void filter() {
+        Intent filters = new Intent(this, FilterBy.class);
+        startActivity(filters);
+    }
 
     @Override
     /* Creates an eventlistadapter to only load the linear layouts of the events being shown
@@ -45,7 +48,11 @@ public class GetFoodList extends Activity {
         setContentView(R.layout.activity_get_food_list);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         ListView eventPage = (ListView) findViewById(R.id.eventpage);
-        EventListAdaptr eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
+        Intent intent = getIntent();
+        String category = intent.getStringExtra(FilterCategory.CATEGORY);
+        EventListAdaptr eventAdapter;
+        if(category != null && MainActivity.categories != null) eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.categories.get(category));
+        else eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
         eventPage.setAdapter(eventAdapter);
         eventPage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -72,14 +79,16 @@ public class GetFoodList extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.filters:
+                filter();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
 }
