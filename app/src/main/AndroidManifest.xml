@@ -104,6 +104,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cs147.flavr.FilterBy" />
         </activity>
+        <activity
+            android:name="com.cs147.flavr.FilterDiet"
+            android:label="@string/title_activity_filter_diet"
+            android:parentActivityName="com.cs147.flavr.FilterBy" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs147.flavr.FilterBy" />
+        </activity>
     </application>
 
 </manifest>

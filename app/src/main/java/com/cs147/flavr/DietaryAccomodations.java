@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class DietaryAccomodations extends Activity {
-    public List<String> diet = new ArrayList<String>();
+    public static List<String> diet = new ArrayList<String>();
 
     public void saveEvent(View view) {
         finish();

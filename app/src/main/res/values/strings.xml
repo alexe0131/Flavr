@@ -14,5 +14,6 @@
     <string name="title_activity_dietary_accomodations">DietaryAccomodations</string>
     <string name="title_activity_filter_by">FilterBy</string>
     <string name="title_activity_filter_category">FilterCategory</string>
+    <string name="title_activity_filter_diet">FilterDiet</string>
 
 </resources>

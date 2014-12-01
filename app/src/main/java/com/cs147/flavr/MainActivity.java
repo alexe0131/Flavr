@@ -21,7 +21,9 @@ import java.util.List;
 
 public class MainActivity extends Activity {
     public static HashMap<String, List<ArgMap>> categories = new HashMap<String, List<ArgMap>>(30);
+    public static HashMap<String, List<ArgMap>> dietChoices = new HashMap<String, List<ArgMap>>(10);
     public static List<ArgMap> events;
+    public static List<String> dietPrefs = Arrays.asList("Kosher", "Vegetarian", "Vegan", "Gluten-free", "Peanut Allergy", "Lactose Intolerant");
     public static List<String> allCategories = Arrays.asList("Asian Cuisine", "Baked Foods", "BBQ Food", "Beverages", "Coffee or Tea", "Dessert", "Doughnuts", "Ethnic Food", "Fast Food",
             "Fish or Seafood", "Frozen Yogurt", "Ice Cream", "Meat", "Mexican Food", "Pancakes or Waffles", "Pizza", "Various Protein", "Sandwiches", "Snacks", "Soup or Salad");
     /*Reads in the hard-coded information through a CSV files using JDDAC library.

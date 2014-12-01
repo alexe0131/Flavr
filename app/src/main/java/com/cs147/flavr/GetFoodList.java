@@ -50,8 +50,10 @@ public class GetFoodList extends Activity {
         ListView eventPage = (ListView) findViewById(R.id.eventpage);
         Intent intent = getIntent();
         String category = intent.getStringExtra(FilterCategory.CATEGORY);
+        String diet = intent.getStringExtra(FilterDiet.DIET);
         EventListAdaptr eventAdapter;
         if(category != null && MainActivity.categories != null) eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.categories.get(category));
+        else if(diet != null && MainActivity.dietChoices != null) eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.dietChoices.get(diet));
         else eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
         eventPage.setAdapter(eventAdapter);
         eventPage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
