@@ -7,12 +7,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
+import net.java.jddac.common.type.ArgMap;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class PickCategories extends Activity {
-    public List<String> categories = new ArrayList<String>();
+    public static List<String> categories = new ArrayList<String>();
+
     public void saveEvent(View view) {
         finish();
     }
@@ -24,7 +27,7 @@ public class PickCategories extends Activity {
         switch(view.getId()) {
             case R.id.checkbox_asian:
                 if (checked) categories.add("Asian Cuisine");
-                break;
+                    break;
             case R.id.checkbox_baked:
                 if (checked) categories.add("Baked Foods");
                 break;
