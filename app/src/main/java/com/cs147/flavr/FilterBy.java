@@ -16,8 +16,11 @@ public class FilterBy extends Activity {
     public static String CATEGORY_SORT = "category";
     public void sortCategory(View view) {
         Intent sort = new Intent(this, FilterCategory.class);
-        filterCategory = true;
-        sort.putExtra(CATEGORY_SORT, filterCategory);
+        startActivity(sort);
+    }
+
+    public void sortDiet(View view) {
+        Intent sort = new Intent(this, FilterDiet.class);
         startActivity(sort);
     }
     @Override

@@ -84,6 +84,22 @@ public class createEvent extends Activity {
         Intent categories = new Intent(this, PickCategories.class);
         startActivity(categories);
     }
+    public void determineDiet(ArgMap event) {
+        for(String string : MainActivity.dietPrefs) {
+            if(DietaryAccomodations.diet.indexOf(string) != -1) {
+                if(MainActivity.dietChoices != null && MainActivity.dietChoices.get(string) != null) {
+                    List<ArgMap> diet = MainActivity.dietChoices.get(string);
+                    diet.add(event);
+                    MainActivity.categories.put(string, diet);
+                }
+                else if(MainActivity.dietChoices != null){
+                    List<ArgMap> diet = new ArrayList<ArgMap>();
+                    diet.add(event);
+                    MainActivity.categories.put(string, diet);
+                }
+            }
+        }
+    }
     public void determineCategories(ArgMap event) {
         for (String string : MainActivity.allCategories) {
             if (PickCategories.categories.indexOf(string) != -1) {
@@ -127,6 +143,7 @@ public class createEvent extends Activity {
             newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
             MainActivity.events.add(0, newEvent);
             determineCategories(newEvent);
+            determineDiet(newEvent);
             Intent submit = new Intent(this, EventConfirmation.class);
             Bundle event = new Bundle();
             event.putIntArray(EVENT_TIMES, timeInfo);
