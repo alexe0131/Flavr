@@ -2,4 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context="com.cs147.flavr.GetFoodList">
     <item android:id="@+id/filters" android:title="Filter list by..."
         android:orderInCategory="100" android:showAsAction="never"/>
+    <item android:id="@+id/notifications" android:title="Get notifications..."
+        android:orderInCategory="100" android:showAsAction="never"/>
 </menu>

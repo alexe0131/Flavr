@@ -112,6 +112,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cs147.flavr.FilterBy" />
         </activity>
+        <activity
+            android:name="com.cs147.flavr.FlavrNotifications"
+            android:label="@string/title_activity_flavr_notifications" >
+        </activity>
+        <activity
+            android:name="com.cs147.flavr.FilterNotifyTabs"
+            android:label="@string/title_activity_filter_notify_tabs" >
+        </activity>
     </application>
 
 </manifest>

@@ -15,5 +15,7 @@
     <string name="title_activity_filter_by">FilterBy</string>
     <string name="title_activity_filter_category">FilterCategory</string>
     <string name="title_activity_filter_diet">FilterDiet</string>
-
+    <string name="title_activity_flavr_notifications">FlavrNotifications</string>
+    <string name="title_activity_filter_notify_tabs">FilterNotifyTabs</string>
+    <string name="alegreya_sans_sc">alegreyasanssc_regular</string>
 </resources>

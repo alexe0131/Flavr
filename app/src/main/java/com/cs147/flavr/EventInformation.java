@@ -3,11 +3,14 @@ package com.cs147.flavr;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +29,17 @@ import java.util.List;
 
 
 public class EventInformation extends Activity {
-
+    public ArgMap currEvent;
+    public void respondToInvite(View view) {
+        Button going = (Button) findViewById(R.id.im_going);
+        going.setBackgroundColor(Color.GREEN);
+        going.setText("See You There");
+        going.setActivated(false);
+        String currAttendance = currEvent.getString(GetFoodList.ATTENDANCE);
+        int attendance = Integer.parseInt(currAttendance);
+        attendance++;
+        currEvent.put(GetFoodList.ATTENDANCE, attendance);
+    }
     private void fillData(ArgMap event) {
         TextView eventTitle = (TextView) findViewById(R.id.get_event_food);
         eventTitle.setText(event.getString(GetFoodList.FOOD));
@@ -36,8 +49,6 @@ public class EventInformation extends Activity {
         description.setText(event.getString(GetFoodList.DESCRIPTION));
         TextView location = (TextView) findViewById(R.id.get_event_location);
         location.setText(event.getString(GetFoodList.LOCATION));
-        TextView tags = (TextView) findViewById(R.id.get_event_tags);
-        tags.setText(event.getString("Tags: "+GetFoodList.TAGS));
         TextView capacity = (TextView) findViewById(R.id.get_event_capacity);
         capacity.setText(event.getString("Capacity: "+GetFoodList.CAPACITY));
         ImageView eventImage = (ImageView) findViewById(R.id.get_event_image);
@@ -70,7 +81,7 @@ public class EventInformation extends Activity {
         int startMin = times[1];
         int endHour = times[2];
         int endMin = times[3];
-        TextView startText = (TextView) findViewById(R.id.confirmation_start_time);
+        TextView startText = (TextView) findViewById(R.id.get_event_starttime);
         if (startHour > sysHour) {
             int hourDiff = startHour - sysHour;
             int minDiff = startMin - sysMin;
@@ -84,7 +95,7 @@ public class EventInformation extends Activity {
             int minDiff = startMin - sysMin;
             startText.setText("Your event starts in "+ Integer.toString(minDiff)+" minutes.");
         }
-        TextView endText = (TextView) findViewById(R.id.confirmation_end_time);
+        TextView endText = (TextView) findViewById(R.id.get_event_endtime);
         if (endHour > sysHour) {
             int hourDiff = endHour - sysHour;
             int minDiff = endMin - sysMin;
@@ -100,6 +111,7 @@ public class EventInformation extends Activity {
         }
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +121,7 @@ public class EventInformation extends Activity {
         int listPosition = 0;
         listPosition = eventInfo.getIntExtra(GetFoodList.EXTRA, listPosition);
         ArgMap event = MainActivity.events.get(listPosition);
+        currEvent = event;
         fillData(event);
         LatLng location = getLocationFromAddress(event.getString(GetFoodList.LOCATION));
         GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.get_map)).getMap();

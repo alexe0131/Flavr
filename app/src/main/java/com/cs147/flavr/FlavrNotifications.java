@@ -1,6 +1,5 @@
 package com.cs147.flavr;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,36 +8,24 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class FilterBy extends Activity {
-    public boolean filterCategory;
-    public boolean filterDiet;
-    public boolean filterLocation;
-    public boolean filterExpireTime;
-    public static String CATEGORY_SORT = "category";
-    public void sortCategory(View view) {
-        Intent sort = new Intent(this, FilterCategory.class);
-        startActivity(sort);
-    }
-
-    public void setNotifications(View view) {
-        Intent notify = new Intent(this, FlavrNotifications.class);
-        startActivity(notify);
-    }
-    public void sortDiet(View view) {
-        Intent sort = new Intent(this, FilterDiet.class);
-        startActivity(sort);
+public class FlavrNotifications extends Activity {
+    public static boolean notify;
+    public void saveNotifications(View view) {
+        notify=true;
+        Intent notifications = new Intent(this, GetFoodList.class);
+        startActivity(notifications);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filter_by);
+        setContentView(R.layout.activity_flavr_notifications);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_filter_by, menu);
+        getMenuInflater().inflate(R.menu.menu_flavr_notifications, menu);
         return true;
     }
 

@@ -1,44 +1,25 @@
 package com.cs147.flavr;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
+import android.app.TabActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class FilterBy extends Activity {
-    public boolean filterCategory;
-    public boolean filterDiet;
-    public boolean filterLocation;
-    public boolean filterExpireTime;
-    public static String CATEGORY_SORT = "category";
-    public void sortCategory(View view) {
-        Intent sort = new Intent(this, FilterCategory.class);
-        startActivity(sort);
-    }
+public class FilterNotifyTabs extends TabActivity {
 
-    public void setNotifications(View view) {
-        Intent notify = new Intent(this, FlavrNotifications.class);
-        startActivity(notify);
-    }
-    public void sortDiet(View view) {
-        Intent sort = new Intent(this, FilterDiet.class);
-        startActivity(sort);
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filter_by);
+        setContentView(R.layout.activity_filter_notify_tabs);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_filter_by, menu);
+        getMenuInflater().inflate(R.menu.menu_filter_notify_tabs, menu);
         return true;
     }
 

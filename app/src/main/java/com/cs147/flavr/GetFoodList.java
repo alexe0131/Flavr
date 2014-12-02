@@ -29,14 +29,21 @@ public class GetFoodList extends Activity {
     public static final String LOCATION = "Location";
     public static final String START_TIME = "Start Time";
     public static final String END_TIME = "End Time";
-    public static final String TAGS = "Tags";
     public static final String CAPACITY = "Capacity";
     public static final String IMAGE = "Image";
     public static final String EXTRA = "extra";
+    public static final String ATTENDANCE = "Attendance";
+    public static final String DISTANCE = "Distance";
+
 
     private void filter() {
         Intent filters = new Intent(this, FilterBy.class);
         startActivity(filters);
+    }
+
+    private void notifications() {
+        Intent notify = new Intent(this, FlavrNotifications.class);
+        startActivity(notify);
     }
 
     @Override
@@ -86,6 +93,9 @@ public class GetFoodList extends Activity {
         switch (item.getItemId()) {
             case R.id.filters:
                 filter();
+                return true;
+            case R.id.notifications:
+                notifications();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

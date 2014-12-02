@@ -71,12 +71,6 @@
             android:id="@+id/get_event_description"
             android:layout_gravity="left" />
 
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="16dp"
-            android:id="@+id/get_event_tags"
-            android:layout_gravity="left" />
         <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
@@ -98,6 +92,19 @@
             android:layout_marginTop="10dp"
             android:textSize="16dp"
             android:id="@+id/get_event_endtime" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundedbuttonblue"
+            android:text="Save"
+            android:id="@+id/im_going"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:onClick="respondToInvite"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="25dp"/>
     </LinearLayout>
+
 </ScrollView>
 
