@@ -1,7 +1,12 @@
 package com.cs147.flavr;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
@@ -15,6 +20,7 @@ import android.net.Uri;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,7 +44,6 @@ public class createEvent extends Activity {
     static final String STATE_EVENT = "saveEvent";
     static final String STATE_DESCRIPTION = "saveDescription";
     static final String STATE_LOCATION = "saveLocation";
-    static final String STATE_TAGS = "saveTags";
     static final String STATE_CAPACITY = "saveCapacity";
 
     /*Extracts string from an edit text field where the user inputs data.
@@ -116,6 +121,23 @@ public class createEvent extends Activity {
             }
         }
     }
+
+    public void notifications(ArgMap event) {
+        if(FlavrNotifications.notify == true) {
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.flavrlogo)
+                    .setContentTitle("Flavr")
+                    .setContentText("Flavr has found an event matching your specifications.");
+            Intent resultIntent = new Intent(this, EventInformation.class);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addParentStack(EventInformation.class);
+            stackBuilder.addNextIntent(resultIntent);
+            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder.setContentIntent(resultPendingIntent);
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.notify(123, mBuilder.build());
+        }
+    }
     /*Upon the clicking of the submit button, reads all the strings and times from the event listing and puts them into an respective arrays to be passed into
     *the next activity of confirming the event. Bundles these into an extra for the intent
     * and goes to event confirmation.
@@ -125,7 +147,6 @@ public class createEvent extends Activity {
         String eventTitle = extractStringFromID(R.id.event_title);
         String description = extractStringFromID(R.id.description);
         String location = extractStringFromID(R.id.location);
-        String tags = extractStringFromID(R.id.tags);
         String capacity = extractStringFromID(R.id.capacity);
         if (foodType.length() == 0) giveToastError("foodType");
         else if (eventTitle.length() == 0) giveToastError("eventTitle");
@@ -139,7 +160,7 @@ public class createEvent extends Activity {
             newEvent.put(GetFoodList.LOCATION, location);
             newEvent.put(GetFoodList.DESCRIPTION, description);
             newEvent.put(GetFoodList.CAPACITY, capacity);
-            newEvent.put(GetFoodList.TAGS, tags);
+            newEvent.put(GetFoodList.ATTENDANCE, 0);
             newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
             MainActivity.events.add(0, newEvent);
             determineCategories(newEvent);
@@ -148,6 +169,7 @@ public class createEvent extends Activity {
             Bundle event = new Bundle();
             event.putIntArray(EVENT_TIMES, timeInfo);
             submit.putExtras(event);
+            notifications(newEvent);
             startActivity(submit);
         }
     }
@@ -162,13 +184,11 @@ public class createEvent extends Activity {
             EditText event = (EditText) findViewById(R.id.event_title);
             EditText description = (EditText) findViewById(R.id.description);
             EditText location = (EditText) findViewById(R.id.location);
-            EditText tags = (EditText) findViewById(R.id.tags);
             EditText capacity = (EditText) findViewById(R.id.capacity);
             food.setText(savedInstanceState.getString(STATE_FOOD));
             event.setText(savedInstanceState.getString(STATE_EVENT));
             description.setText(savedInstanceState.getString(STATE_DESCRIPTION));
             location.setText(savedInstanceState.getString(STATE_LOCATION));
-            tags.setText(savedInstanceState.getString(STATE_TAGS));
             capacity.setText(savedInstanceState.getString(STATE_CAPACITY));
 
         }
@@ -222,13 +242,11 @@ public class createEvent extends Activity {
         EditText event = (EditText) findViewById(R.id.event_title);
         EditText description = (EditText) findViewById(R.id.description);
         EditText location = (EditText) findViewById(R.id.location);
-        EditText tags = (EditText) findViewById(R.id.tags);
         EditText capacity = (EditText) findViewById(R.id.capacity);
         savedInstanceState.putString(STATE_FOOD, food.getText().toString());
         savedInstanceState.putString(STATE_EVENT, event.getText().toString());
         savedInstanceState.putString(STATE_DESCRIPTION, description.getText().toString());
         savedInstanceState.putString(STATE_LOCATION, location.getText().toString());
-        savedInstanceState.putString(STATE_TAGS, tags.getText().toString());
         savedInstanceState.putString(STATE_CAPACITY, capacity.getText().toString());
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);

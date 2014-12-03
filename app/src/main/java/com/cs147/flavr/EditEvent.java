@@ -41,8 +41,6 @@ public class EditEvent extends Activity {
         description.setText(info.getString(GetFoodList.DESCRIPTION));
         EditText location = (EditText) findViewById(R.id.edit_location);
         location.setText(info.getString(GetFoodList.LOCATION));
-        EditText tags = (EditText) findViewById(R.id.edit_tags);
-        tags.setText(info.getString(GetFoodList.TAGS));
         EditText capacity = (EditText) findViewById(R.id.edit_capacity);
         capacity.setText(info.getString(GetFoodList.CAPACITY));
     }
@@ -89,8 +87,7 @@ public class EditEvent extends Activity {
         event.put(GetFoodList.DESCRIPTION, description.getText());
         EditText location = (EditText) findViewById(R.id.edit_location);
         event.put(GetFoodList.LOCATION, location.getText());
-        EditText tags = (EditText) findViewById(R.id.edit_tags);
-        event.put(GetFoodList.TAGS, tags.getText());
+
         EditText capacity = (EditText) findViewById(R.id.edit_capacity);
         event.put(GetFoodList.CAPACITY, capacity.getText());
         MainActivity.events.set(0, event);

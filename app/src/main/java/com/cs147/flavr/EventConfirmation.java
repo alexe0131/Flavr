@@ -1,6 +1,7 @@
 //NOTICE: THIS CODE CONTAINS MATERIAL THAT IS FREELY DISTRIBUTED BY GOOGLE.INC
 package com.cs147.flavr;
 
+import android.graphics.Typeface;
 import android.location.Address;
 import android.os.Bundle;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -54,20 +55,24 @@ public class EventConfirmation extends FragmentActivity{
     */
     public void printEventInfo(ArgMap event) {
             TextView eventTitle = (TextView) findViewById(R.id.confirmation_food);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_regular.ttf");
+        eventTitle.setTypeface(font);
             eventTitle.setText(event.getString(GetFoodList.FOOD));
             TextView food = (TextView) findViewById(R.id.confirmation_event);
+            food.setTypeface(font);
             food.setText(event.getString(GetFoodList.EVENT));
             TextView description = (TextView) findViewById(R.id.confirmation_description);
             description.setText(event.getString(GetFoodList.DESCRIPTION));
             TextView location = (TextView) findViewById(R.id.confirmation_location);
+        location.setTypeface(font);
             location.setText(event.getString(GetFoodList.LOCATION));
-            TextView tags = (TextView) findViewById(R.id.confirmation_tags);
-            tags.setText(event.getString(GetFoodList.TAGS));
+            TextView attendance = (TextView) findViewById(R.id.confirmation_attendance);
+            attendance.setText(event.getString(GetFoodList.ATTENDANCE)+" people are going.");
+
             TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
             capacity.setText(event.getString(GetFoodList.CAPACITY));
             ImageView eventImage = (ImageView) findViewById(R.id.event_image);
             eventImage.setImageBitmap(createEvent.yourSelectedImage);
-
     }
     /* Retrieves the times that the user entered on the previous screen and uses these to
     * calculate how long until the start and end times the user is.
@@ -115,6 +120,7 @@ public class EventConfirmation extends FragmentActivity{
         Intent edit = new Intent(this, EditEvent.class);
         startActivity(edit);
     }
+
     /* Retrieves bundled information from create event activity, updates the map location
     * accordingly, and calls the methods to print the event information and times
     */

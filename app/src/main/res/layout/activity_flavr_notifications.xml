@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:id="@+id/notifyduration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="16dp"
+            android:text="Notify me for "
+            android:textStyle="bold"
+            android:id="@+id/notifyduration_label"></TextView>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:id="@+id/duration"
+            android:hint="Select number of hours"
+            android:inputType="number"
+            android:layout_weight="1">
+            </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="16dp"
+            android:text=" hours."
+            android:id="@+id/notifyhours"/>
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/notifytimes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="16dp"
+            android:text="Notify me "
+            android:textStyle="bold"
+            android:id="@+id/notifytimes_label"></TextView>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:id="@+id/notifytimeentry"
+            android:inputType="number"
+            android:layout_weight="1">
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="16dp"
+            android:text=" times."
+            android:id="@+id/notifytimelabel"/>
+    </LinearLayout>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@drawable/roundedbuttongreen"
+        android:text="Save"
+        android:id="@+id/save_notifications"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:onClick="saveNotifications"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="25dp"/>
+</LinearLayout>
