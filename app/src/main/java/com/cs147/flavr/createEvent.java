@@ -81,6 +81,7 @@ public class createEvent extends Activity {
         int endMinute = endTimer.getCurrentMinute();
         times[0] = endHour;
         times[1] = endMinute;
+
         return times;
     }
 
@@ -157,7 +158,10 @@ public class createEvent extends Activity {
         else {
 
             int [] timeInfo = parseTimes();
+
             ArgMap newEvent = new ArgMap();
+            newEvent.put(GetFoodList.END_HOUR, Integer.toString(timeInfo[0]));
+            newEvent.put(GetFoodList.END_MIN, Integer.toString(timeInfo[1]));
             newEvent.put(GetFoodList.FOOD, foodType);
             newEvent.put(GetFoodList.EVENT, eventTitle);
             newEvent.put(GetFoodList.LOCATION, location);
@@ -165,6 +169,11 @@ public class createEvent extends Activity {
             newEvent.put(GetFoodList.CAPACITY, capacity);
             newEvent.put(GetFoodList.ATTENDANCE, 0);
             newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
+            double rangeMin = 0.1;
+            double rangeMax=3.0;
+            Random r = new Random();
+            double randomValue = (int)(rangeMin + (rangeMax - rangeMin) * r.nextDouble()*10)/10.0;
+            newEvent.put(GetFoodList.DISTANCE,Double.toString(randomValue));
             MainActivity.events.add(0, newEvent);
             determineCategories(newEvent);
             determineDiet(newEvent);

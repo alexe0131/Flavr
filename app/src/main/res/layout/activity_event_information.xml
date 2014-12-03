@@ -30,80 +30,80 @@
             map:uiZoomControls="true"
             map:uiZoomGestures="true"/>
         <LinearLayout
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_width="match_parent"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/get_event_image"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="left"
                 android:layout_marginLeft="15dp">
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textSize="20dp"
+                    android:textSize="24dp"
                     android:textStyle="bold"
                     android:id="@+id/get_event_food"/>
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textSize="16dp"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     android:id="@+id/get_event_event"/>
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textSize="16dp"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     android:id="@+id/get_event_location" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/distance"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_marginLeft="25dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/get_event_attendance"/>
+                    </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-        <TextView android:layout_width="wrap_content"
+        <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="16dp"
-            android:id="@+id/get_event_description"
-            android:layout_gravity="left" />
-
-        <LinearLayout
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal">
-            <TextView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="16dp"
-                android:id="@+id/get_event_capacity"
-                android:layout_gravity="left" />
-        </LinearLayout>
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="16dp"
-            android:id="@+id/get_event_starttime" />
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="16dp"
-            android:id="@+id/get_event_endtime" />
+            android:id="@+id/get_event_description"/>
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/roundedbuttonblue"
-            android:text="Save"
+            android:text="I'm Going!"
             android:id="@+id/im_going"
             android:textSize="20dp"
             android:layout_gravity="center"
             android:onClick="respondToInvite"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="25dp"/>
+            android:layout_marginTop="50dp"/>
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:id="@+id/get_event_endtime"
+            android:gravity="center_horizontal"/>
     </LinearLayout>
 
 </ScrollView>
