@@ -32,6 +32,11 @@ public class EditEvent extends Activity {
         startActivityForResult(photoPickerIntent, SELECT_PHOTO);
 
     }
+
+    private void userEvents() {
+        Intent events = new Intent(this, UserEvents.class);
+        startActivity(events);
+    }
     private void enterOldData(ArgMap info) {
         EditText foodType = (EditText) findViewById(R.id.edit_food_type);
         foodType.setText(info.getString(GetFoodList.FOOD));
@@ -117,13 +122,12 @@ public class EditEvent extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.myevents3:
+                userEvents();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

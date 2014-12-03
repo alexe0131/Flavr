@@ -34,6 +34,11 @@ import java.util.List;
 
 public class EventInformation extends Activity {
     public ArgMap currEvent;
+
+    private void userEvents() {
+        Intent events = new Intent(this, UserEvents.class);
+        startActivity(events);
+    }
     public void respondToInvite(View view) {
         Button going = (Button) findViewById(R.id.im_going);
         going.setBackgroundDrawable(getResources().getDrawable(R.drawable.roundedbuttongreen));
@@ -79,10 +84,11 @@ public class EventInformation extends Activity {
         try {
             address = coder.getFromLocationName(strAddress, 5);
             if (address == null) return null;
-            Address location = address.get(0);
-            if (location != null)
-                loc = new LatLng(location.getLatitude(), location.getLongitude());
-
+            if(!address.isEmpty()) {
+                Address location = address.get(0);
+                if (location != null)
+                    loc = new LatLng(location.getLatitude(), location.getLongitude());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,11 +154,12 @@ public class EventInformation extends Activity {
         fillData(event);
         printEventExpiry(event);
         LatLng location = getLocationFromAddress(event.getString(GetFoodList.LOCATION));
-        GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.get_map)).getMap();
-        gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        Marker place = gMap.addMarker(new MarkerOptions()
-                .position(location));
-
+        if(location != null) {
+            GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.get_map)).getMap();
+            gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+            Marker place = gMap.addMarker(new MarkerOptions()
+                    .position(location));
+        }
     }
 
 
@@ -168,13 +175,12 @@ public class EventInformation extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.myevents3:
+                userEvents();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

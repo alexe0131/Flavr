@@ -49,6 +49,10 @@ public class createEvent extends Activity {
     static final String STATE_LOCATION = "saveLocation";
     static final String STATE_CAPACITY = "saveCapacity";
 
+    private void userEvents() {
+        Intent events = new Intent(this, UserEvents.class);
+        startActivity(events);
+    }
     /*Extracts string from an edit text field where the user inputs data.
     */
     public String extractStringFromID(int id) {
@@ -192,6 +196,7 @@ public class createEvent extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+        yourSelectedImage = BitmapFactory.decodeResource(getResources(), R.drawable.noimage);
         Typeface open = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
         TextView food = (TextView) findViewById(R.id.food_type_label);
         EditText foodEntry = (EditText) findViewById(R.id.food_type);
@@ -251,15 +256,15 @@ public class createEvent extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.myevents4:
+                userEvents();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
-    }
+}
     @Override
     /* Gets image from user for event and converts to Bitmap
      */

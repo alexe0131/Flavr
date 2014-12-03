@@ -27,6 +27,11 @@ public class MainActivity extends Activity {
     public static List<String> dietPrefs = Arrays.asList("Kosher", "Vegetarian", "Vegan", "Gluten-free", "Peanut Allergy", "Lactose Intolerant");
     public static List<String> allCategories = Arrays.asList("Asian Cuisine", "Baked Foods", "BBQ Food", "Beverages", "Coffee or Tea", "Dessert", "Doughnuts", "Ethnic Food", "Fast Food",
             "Fish or Seafood", "Frozen Yogurt", "Ice Cream", "Meat", "Mexican Food", "Pancakes or Waffles", "Pizza", "Various Protein", "Sandwiches", "Snacks", "Soup or Salad");
+
+    private void userEvents() {
+        Intent events = new Intent(this, UserEvents.class);
+        startActivity(events);
+    }
     /*Reads in the hard-coded information through a CSV files using JDDAC library.
      */
     public List<ArgMap> readAndroidEmbeddedCSVFile() {
@@ -71,13 +76,13 @@ public class MainActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.myevents1:
+                userEvents();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
