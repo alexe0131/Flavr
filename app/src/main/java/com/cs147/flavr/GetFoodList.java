@@ -42,9 +42,9 @@ public class GetFoodList extends Activity {
         startActivity(filters);
     }
 
-    private void notifications() {
-        Intent notify = new Intent(this, FlavrNotifications.class);
-        startActivity(notify);
+    private void userEvents() {
+        Intent events = new Intent(this, UserEvents.class);
+        startActivity(events);
     }
 
     @Override
@@ -95,8 +95,8 @@ public class GetFoodList extends Activity {
             case R.id.filters:
                 filter();
                 return true;
-            case R.id.notifications:
-                notifications();
+            case R.id.myevents:
+                userEvents();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

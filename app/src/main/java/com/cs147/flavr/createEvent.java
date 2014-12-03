@@ -175,6 +175,7 @@ public class createEvent extends Activity {
             double randomValue = (int)(rangeMin + (rangeMax - rangeMin) * r.nextDouble()*10)/10.0;
             newEvent.put(GetFoodList.DISTANCE,Double.toString(randomValue));
             MainActivity.events.add(0, newEvent);
+            MainActivity.userEvents.add(0, newEvent);
             determineCategories(newEvent);
             determineDiet(newEvent);
             Intent submit = new Intent(this, EventConfirmation.class);

@@ -120,6 +120,14 @@
             android:name="com.cs147.flavr.FilterNotifyTabs"
             android:label="@string/title_activity_filter_notify_tabs" >
         </activity>
+        <activity
+            android:name="com.cs147.flavr.UserEvents"
+            android:label="@string/title_activity_user_events"
+            android:parentActivityName="com.cs147.flavr.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs147.flavr.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
