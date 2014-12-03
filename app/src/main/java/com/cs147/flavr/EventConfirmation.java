@@ -29,8 +29,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import net.java.jddac.common.type.ArgMap;
 
 public class EventConfirmation extends FragmentActivity{
-
-    public ArgMap event;
     public final static String EVENT_STRINGS = "event strings";
     public final static String EVENT_TIMES = "event times";
     /* Looks up the address that the user enters and finds the latitude and longitude of that
@@ -78,7 +76,9 @@ public class EventConfirmation extends FragmentActivity{
         StyleSpan b = new StyleSpan(Typeface.BOLD);
         sb.setSpan(b, 19, 19+event.getString(GetFoodList.ATTENDANCE).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             attendance.setText(sb);
-
+        TextView distance = (TextView) findViewById(R.id.confirmation_distance);
+        distance.setTypeface(font);
+        distance.setText(event.getString(GetFoodList.DISTANCE) + " miles away");
             TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
             capacity.setText(event.getString(GetFoodList.CAPACITY));
             ImageView eventImage = (ImageView) findViewById(R.id.event_image);
@@ -87,14 +87,14 @@ public class EventConfirmation extends FragmentActivity{
     /* Retrieves the times that the user entered on the previous screen and uses these to
     * calculate how long until the start and end times the user is.
     */
-    private void printEventExpiry(int[] times) {
+    private void printEventExpiry(ArgMap event) {
         Calendar c = Calendar.getInstance();
         int sysHour = c.get(Calendar.HOUR_OF_DAY);
         int sysMin = c.get(Calendar.MINUTE);
 //        int startHour = times[0];
 //        int startMin = times[1];
-        int endHour = times[0];
-        int endMin = times[1];
+        int endHour = Integer.parseInt(event.getString(GetFoodList.END_HOUR));
+        int endMin = Integer.parseInt(event.getString(GetFoodList.END_MIN));
 //        TextView startText = (TextView) findViewById(R.id.confirmation_start_time);
 //        if (startHour > sysHour) {
 //            int hourDiff = startHour - sysHour;
@@ -150,10 +150,8 @@ public class EventConfirmation extends FragmentActivity{
         gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         Marker place = gMap.addMarker(new MarkerOptions()
                 .position(location));
-        int[]eventTimes = eventInfo.getIntArrayExtra(createEvent.EVENT_TIMES);
-        if(eventTimes == null) eventTimes = eventInfo.getIntArrayExtra(EditEvent.TIMES);
         printEventInfo(event);
-        printEventExpiry(eventTimes);
+        printEventExpiry(event);
     }
 
     @Override

@@ -28,7 +28,8 @@ public class GetFoodList extends Activity {
     public static final String DESCRIPTION = "Description";
     public static final String LOCATION = "Location";
     public static final String START_TIME = "Start Time";
-    public static final String END_TIME = "End Time";
+    public static final String END_HOUR = "End Hour";
+    public static final String END_MIN = "End Minute";
     public static final String CAPACITY = "Capacity";
     public static final String IMAGE = "Image";
     public static final String EXTRA = "extra";

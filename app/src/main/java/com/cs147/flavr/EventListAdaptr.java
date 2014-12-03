@@ -4,6 +4,7 @@ package com.cs147.flavr;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,11 +59,15 @@ public class EventListAdaptr extends ArrayAdapter<ArgMap> {
 
         ArgMap event = events.get(position);
         rowView.setTag(event);
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/alegreyasanssc_regular.ttf");
         TextView eventFood = (TextView) rowView.findViewById(R.id.event_food);
+        eventFood.setTypeface(font);
         eventFood.setText(event.getString(GetFoodList.FOOD, ""));
         TextView eventTitle = (TextView) rowView.findViewById(R.id.event_event);
+        eventTitle.setTypeface(font);
         eventTitle.setText(event.getString(GetFoodList.EVENT,""));
         TextView eventLocation = (TextView) rowView.findViewById(R.id.event_location);
+        eventLocation.setTypeface(font);
         eventLocation.setText(event.getString(GetFoodList.LOCATION,""));
         ImageView eventImage = (ImageView) rowView.findViewById(R.id.event_picture);
         eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE, defaultPicture));
