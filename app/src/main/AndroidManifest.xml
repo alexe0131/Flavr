@@ -106,7 +106,7 @@
         </activity>
         <activity
             android:name="com.cs147.flavr.FilterDiet"
-            android:label="@string/title_activity_filter_diet"
+            android:label="Filter By Diet"
             android:parentActivityName="com.cs147.flavr.FilterBy" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -114,11 +114,19 @@
         </activity>
         <activity
             android:name="com.cs147.flavr.FlavrNotifications"
-            android:label="@string/title_activity_flavr_notifications" >
+            android:label="Set Notifications" >
         </activity>
         <activity
             android:name="com.cs147.flavr.FilterNotifyTabs"
             android:label="@string/title_activity_filter_notify_tabs" >
+        </activity>
+        <activity
+            android:name="com.cs147.flavr.UserEvents"
+            android:label="User Events"
+            android:parentActivityName="com.cs147.flavr.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs147.flavr.MainActivity" />
         </activity>
     </application>
 

@@ -18,4 +18,6 @@
     <string name="title_activity_flavr_notifications">FlavrNotifications</string>
     <string name="title_activity_filter_notify_tabs">FilterNotifyTabs</string>
     <string name="alegreya_sans_sc">alegreyasanssc_regular</string>
+    <string name="title_activity_user_events">UserEvents</string>
+
 </resources>

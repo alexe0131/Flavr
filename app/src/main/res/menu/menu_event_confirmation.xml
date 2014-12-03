@@ -3,4 +3,6 @@
     tools:context="com.cs147.flavr.EventConfirmation">
     <item android:id="@+id/edit_event" android:title="Edit this event..."
         android:orderInCategory="100" android:showAsAction="never"/>
+    <item android:id="@+id/myevents2" android:title="My Events"
+        android:orderInCategory="100" android:showAsAction="never"/>
 </menu>

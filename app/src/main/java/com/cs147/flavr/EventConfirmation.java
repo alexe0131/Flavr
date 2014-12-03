@@ -30,7 +30,14 @@ import net.java.jddac.common.type.ArgMap;
 
 public class EventConfirmation extends FragmentActivity{
     public final static String EVENT_STRINGS = "event strings";
+
     public final static String EVENT_TIMES = "event times";
+
+    private void userEvents() {
+        Intent events = new Intent(this, UserEvents.class);
+        startActivity(events);
+    }
+
     /* Looks up the address that the user enters and finds the latitude and longitude of that
     * location to be looked up on a map.
     */
@@ -41,10 +48,11 @@ public class EventConfirmation extends FragmentActivity{
         try {
             address = coder.getFromLocationName(strAddress, 5);
             if (address == null) return null;
-            Address location = address.get(0);
-            if (location != null)
-                loc = new LatLng(location.getLatitude(), location.getLongitude());
-
+            if(!address.isEmpty()) {
+                Address location = address.get(0);
+                if (location != null)
+                    loc = new LatLng(location.getLatitude(), location.getLongitude());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -146,10 +154,12 @@ public class EventConfirmation extends FragmentActivity{
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         ArgMap event = MainActivity.events.get(0);
         LatLng location = getLocationFromAddress(event.getString(GetFoodList.LOCATION));
-        GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-        gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        Marker place = gMap.addMarker(new MarkerOptions()
-                .position(location));
+        if(location != null) {
+            GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+            gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+            Marker place = gMap.addMarker(new MarkerOptions()
+                    .position(location));
+        }
         printEventInfo(event);
         printEventExpiry(event);
     }
@@ -168,6 +178,8 @@ public class EventConfirmation extends FragmentActivity{
             case R.id.edit_event:
                 editEvent();
                 return true;
+            case R.id.myevents2:
+                userEvents();
             default:
                 return super.onOptionsItemSelected(item);
         }
