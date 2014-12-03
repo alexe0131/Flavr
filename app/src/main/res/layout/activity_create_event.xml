@@ -43,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
@@ -64,7 +63,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
@@ -86,7 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
@@ -102,26 +99,7 @@
                 android:hint="Enter the address of your event here"
                 android:layout_weight="1"/>
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/row5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dip" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:textSize="16dp"
-                android:text="&#8226; Start Time: "
-                android:textStyle="bold"
-                android:id="@+id/start_time_label"
-                android:layout_marginTop="75dp">
-            </TextView>
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/start_time"/>
-        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/row6"
             android:layout_width="match_parent"
@@ -140,7 +118,9 @@
             <TimePicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/end_time"/>
+                android:id="@+id/end_time"
+                android:scaleX=".75"
+                android:scaleY=".75"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -178,7 +158,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
@@ -200,7 +179,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
             android:padding="5dip" >
             <TextView
                 android:layout_width="wrap_content"
@@ -213,10 +191,11 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
-                android:background="@drawable/roundedbuttonblue"
-                android:text="Upload an image..."
+                android:background="@drawable/roundedbuttonwhite"
+                android:text="Upload an Image"
                 android:textSize="14dp"
-                android:onClick="uploadImage"/>
+                android:onClick="uploadImage"
+                android:id="@+id/uploadimage"/>
 
         </LinearLayout>
         <Button

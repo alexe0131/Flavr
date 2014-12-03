@@ -7,6 +7,10 @@ import android.os.Bundle;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -56,18 +60,24 @@ public class EventConfirmation extends FragmentActivity{
     public void printEventInfo(ArgMap event) {
             TextView eventTitle = (TextView) findViewById(R.id.confirmation_food);
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_regular.ttf");
+        Typeface openSans = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
         eventTitle.setTypeface(font);
             eventTitle.setText(event.getString(GetFoodList.FOOD));
             TextView food = (TextView) findViewById(R.id.confirmation_event);
             food.setTypeface(font);
             food.setText(event.getString(GetFoodList.EVENT));
             TextView description = (TextView) findViewById(R.id.confirmation_description);
+         description.setTypeface(openSans);
             description.setText(event.getString(GetFoodList.DESCRIPTION));
             TextView location = (TextView) findViewById(R.id.confirmation_location);
-        location.setTypeface(font);
+            location.setTypeface(font);
             location.setText(event.getString(GetFoodList.LOCATION));
             TextView attendance = (TextView) findViewById(R.id.confirmation_attendance);
-            attendance.setText(event.getString(GetFoodList.ATTENDANCE)+" people are going.");
+            attendance.setTypeface(openSans);
+        SpannableStringBuilder sb = new SpannableStringBuilder("You currently have "+event.getString(GetFoodList.ATTENDANCE)+" attending.");
+        StyleSpan b = new StyleSpan(Typeface.BOLD);
+        sb.setSpan(b, 19, 19+event.getString(GetFoodList.ATTENDANCE).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            attendance.setText(sb);
 
             TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
             capacity.setText(event.getString(GetFoodList.CAPACITY));
@@ -81,25 +91,28 @@ public class EventConfirmation extends FragmentActivity{
         Calendar c = Calendar.getInstance();
         int sysHour = c.get(Calendar.HOUR_OF_DAY);
         int sysMin = c.get(Calendar.MINUTE);
-        int startHour = times[0];
-        int startMin = times[1];
-        int endHour = times[2];
-        int endMin = times[3];
-        TextView startText = (TextView) findViewById(R.id.confirmation_start_time);
-        if (startHour > sysHour) {
-            int hourDiff = startHour - sysHour;
-            int minDiff = startMin - sysMin;
-            if(sysMin > startMin) {
-                hourDiff--;
-                minDiff += 60;
-            }
-            startText.setText("Your event starts in " + Integer.toString(hourDiff) + " hours and "+ Integer.toString(minDiff)+" minutes.");
-        }
-        if(startHour == sysHour && startMin >= sysMin) {
-            int minDiff = startMin - sysMin;
-            startText.setText("Your event starts in "+ Integer.toString(minDiff)+" minutes.");
-        }
+//        int startHour = times[0];
+//        int startMin = times[1];
+        int endHour = times[0];
+        int endMin = times[1];
+//        TextView startText = (TextView) findViewById(R.id.confirmation_start_time);
+//        if (startHour > sysHour) {
+//            int hourDiff = startHour - sysHour;
+//            int minDiff = startMin - sysMin;
+//            if(sysMin > startMin) {
+//                hourDiff--;
+//                minDiff += 60;
+//            }
+//            startText.setText("Your event starts in " + Integer.toString(hourDiff) + " hours and "+ Integer.toString(minDiff)+" minutes.");
+//        }
+//        if(startHour == sysHour && startMin >= sysMin) {
+//            int minDiff = startMin - sysMin;
+//            startText.setText("Your event starts in "+ Integer.toString(minDiff)+" minutes.");
+//        }
+        Typeface openSans = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
+
         TextView endText = (TextView) findViewById(R.id.confirmation_end_time);
+        endText.setTypeface(openSans);
         if (endHour > sysHour) {
             int hourDiff = endHour - sysHour;
             int minDiff = endMin - sysMin;
@@ -107,11 +120,13 @@ public class EventConfirmation extends FragmentActivity{
                 hourDiff--;
                 minDiff += 60;
             }
-            endText.setText("Your event ends in " + Integer.toString(hourDiff) + " hours and "+ Integer.toString(minDiff)+" minutes.");
+            String plural = " hours.";
+            if(hourDiff == 1) plural = " hour.";
+            endText.setText("Expires in: " + Integer.toString(hourDiff) + plural);
         }
         if(endHour == sysHour && endMin >= sysMin) {
             int minDiff = endMin - sysMin;
-            endText.setText("Your event ends in "+ Integer.toString(minDiff)+" minutes.");
+            endText.setText("Expires in: "+ Integer.toString(minDiff)+" minutes.");
         }
 
     }
