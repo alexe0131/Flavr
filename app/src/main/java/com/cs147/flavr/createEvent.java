@@ -5,13 +5,16 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import java.io.FileNotFoundException;
 import java.lang.String;
@@ -67,17 +70,17 @@ public class createEvent extends Activity {
     }
 
     private int[] parseTimes() {
-        int[] times = new int[4];
-        TimePicker startTimer = (TimePicker) findViewById(R.id.start_time);
-        int startHour = startTimer.getCurrentHour();
-        int startMinute = startTimer.getCurrentMinute();
-        times[0] = startHour;
-        times[1] = startMinute;
+        int[] times = new int[2];
+//        TimePicker startTimer = (TimePicker) findViewById(R.id.start_time);
+//        int startHour = startTimer.getCurrentHour();
+//        int startMinute = startTimer.getCurrentMinute();
+//        times[0] = startHour;
+//        times[1] = startMinute;
         TimePicker endTimer = (TimePicker) findViewById(R.id.end_time);
         int endHour = endTimer.getCurrentHour();
         int endMinute = endTimer.getCurrentMinute();
-        times[2] = endHour;
-        times[3] = endMinute;
+        times[0] = endHour;
+        times[1] = endMinute;
         return times;
     }
 
@@ -178,21 +181,50 @@ public class createEvent extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_event);
+        Typeface open = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
+        TextView food = (TextView) findViewById(R.id.food_type_label);
+        EditText foodEntry = (EditText) findViewById(R.id.food_type);
+        food.setTypeface(open);
+        foodEntry.setTypeface(open);
+        TextView event = (TextView) findViewById(R.id.event_title_label);
+        EditText eventEntry = (EditText) findViewById(R.id.event_title);
+        event.setTypeface(open);
+        eventEntry.setTypeface(open);
+        TextView location = (TextView) findViewById(R.id.location_label);
+        EditText loc = (EditText) findViewById(R.id.location);
+        location.setTypeface(open);
+        loc.setTypeface(open);
+        TextView description = (TextView) findViewById(R.id.description_label);
+        EditText descriptionEntry = (EditText) findViewById(R.id.description);
+        description.setTypeface(open);
+        descriptionEntry.setTypeface(open);
+        TextView endTime = (TextView) findViewById(R.id.end_time_label);
+        endTime.setTypeface(open);
+        TextView capacity = (TextView) findViewById(R.id.capacity_label);
+        EditText cap = (EditText) findViewById(R.id.capacity);
+        capacity.setTypeface(open);
+        cap.setTypeface(open);
+        TextView img = (TextView) findViewById(R.id.image_label);
+        img.setTypeface(open);
+        Button categories = (Button) findViewById(R.id.pick_categories);
+        Button diet = (Button) findViewById(R.id.dietary_accomodations);
+        Button image = (Button) findViewById(R.id.uploadimage);
+        Button submit = (Button) findViewById(R.id.submit);
+        categories.setTypeface(open);
+        diet.setTypeface(open);
+        image.setTypeface(open);
+        submit.setTypeface(open);
         if (savedInstanceState != null) {
             // Restore value of members from saved state
-            EditText food = (EditText) findViewById(R.id.food_type);
-            EditText event = (EditText) findViewById(R.id.event_title);
-            EditText description = (EditText) findViewById(R.id.description);
-            EditText location = (EditText) findViewById(R.id.location);
-            EditText capacity = (EditText) findViewById(R.id.capacity);
-            food.setText(savedInstanceState.getString(STATE_FOOD));
-            event.setText(savedInstanceState.getString(STATE_EVENT));
-            description.setText(savedInstanceState.getString(STATE_DESCRIPTION));
-            location.setText(savedInstanceState.getString(STATE_LOCATION));
-            capacity.setText(savedInstanceState.getString(STATE_CAPACITY));
+
+            foodEntry.setText(savedInstanceState.getString(STATE_FOOD));
+            eventEntry.setText(savedInstanceState.getString(STATE_EVENT));
+            descriptionEntry.setText(savedInstanceState.getString(STATE_DESCRIPTION));
+            loc.setText(savedInstanceState.getString(STATE_LOCATION));
+            cap.setText(savedInstanceState.getString(STATE_CAPACITY));
 
         }
-        setContentView(R.layout.activity_create_event);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
