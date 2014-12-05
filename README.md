@@ -1,6 +1,7 @@
 Flavr
 =====
 Hi-Fi Prototype of Flavr
+Authors:
 Alex Engel
 Andrew Luo
 Ben Ulmer
