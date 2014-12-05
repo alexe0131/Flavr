@@ -3,6 +3,8 @@ package com.cs147.flavr;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +38,13 @@ public class GetFoodList extends Activity {
     public static final String ATTENDANCE = "Attendance";
     public static final String DISTANCE = "Distance";
 
-
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Food Events");
+    }
     private void filter() {
         Intent filters = new Intent(this, FilterBy.class);
         startActivity(filters);
@@ -57,6 +65,7 @@ public class GetFoodList extends Activity {
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         ListView eventPage = (ListView) findViewById(R.id.eventpage);
         Intent intent = getIntent();
+        createCustomActionBar();
         String category = intent.getStringExtra(FilterCategory.CATEGORY);
         String diet = intent.getStringExtra(FilterDiet.DIET);
         EventListAdaptr eventAdapter;

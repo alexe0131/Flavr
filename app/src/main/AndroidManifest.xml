@@ -41,7 +41,7 @@
             android:name="com.cs147.flavr.EventConfirmation"
             android:label="@string/title_activity_event_confirmation"
             android:launchMode="singleTop"
-            android:parentActivityName="com.cs147.flavr.createEvent" >
+            android:parentActivityName="com.cs147.flavr.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cs147.flavr.createEvent" />
@@ -116,10 +116,7 @@
             android:name="com.cs147.flavr.FlavrNotifications"
             android:label="Set Notifications" >
         </activity>
-        <activity
-            android:name="com.cs147.flavr.FilterNotifyTabs"
-            android:label="@string/title_activity_filter_notify_tabs" >
-        </activity>
+
         <activity
             android:name="com.cs147.flavr.UserEvents"
             android:label="User Events"

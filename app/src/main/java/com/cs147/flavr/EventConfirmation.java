@@ -1,6 +1,7 @@
 //NOTICE: THIS CODE CONTAINS MATERIAL THAT IS FREELY DISTRIBUTED BY GOOGLE.INC
 package com.cs147.flavr;
 
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.os.Bundle;
@@ -32,7 +33,23 @@ public class EventConfirmation extends FragmentActivity{
     public final static String EVENT_STRINGS = "event strings";
 
     public final static String EVENT_TIMES = "event times";
+    public static ArgMap currEvent;
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Event Confirmation");
+    }
 
+    private void deleteEvent(){
+        MainActivity.events.remove(currEvent);
+        MainActivity.userEvents.remove(currEvent);
+        MainActivity.dietChoices.remove(currEvent);
+        MainActivity.categories.remove(currEvent);
+        Intent main = new Intent(this, MainActivity.class);
+        startActivity(main);
+    }
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
@@ -151,8 +168,10 @@ public class EventConfirmation extends FragmentActivity{
         super.onCreate(savedInstanceState);
         Intent eventInfo = getIntent();
         setContentView(R.layout.activity_event_confirmation);
+        createCustomActionBar();
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         ArgMap event = MainActivity.events.get(0);
+        currEvent = event;
         LatLng location = getLocationFromAddress(event.getString(GetFoodList.LOCATION));
         if(location != null) {
             GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -180,6 +199,10 @@ public class EventConfirmation extends FragmentActivity{
                 return true;
             case R.id.myevents2:
                 userEvents();
+                return true;
+            case R.id.delete_event:
+                deleteEvent();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -2,14 +2,25 @@ package com.cs147.flavr;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class FlavrNotifications extends Activity {
     public static boolean notify;
+
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Flavr");
+    }
     public void saveNotifications(View view) {
         notify=true;
         Intent notifications = new Intent(this, GetFoodList.class);
@@ -19,6 +30,7 @@ public class FlavrNotifications extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flavr_notifications);
+        createCustomActionBar();
     }
 
 

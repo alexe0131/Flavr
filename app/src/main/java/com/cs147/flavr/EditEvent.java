@@ -2,8 +2,10 @@ package com.cs147.flavr;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -32,7 +34,13 @@ public class EditEvent extends Activity {
         startActivityForResult(photoPickerIntent, SELECT_PHOTO);
 
     }
-
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Edit Event");
+    }
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
@@ -105,6 +113,7 @@ public class EditEvent extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_event);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        createCustomActionBar();
         ArgMap editEvent = MainActivity.events.get(0);
         enterOldData(editEvent);
     }

@@ -1,11 +1,14 @@
 package com.cs147.flavr;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import net.java.jddac.common.type.ArgMap;
 
@@ -15,7 +18,13 @@ import java.util.List;
 
 public class PickCategories extends Activity {
     public static List<String> categories = new ArrayList<String>();
-
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Flavr");
+    }
     public void saveEvent(View view) {
         finish();
     }
@@ -91,6 +100,7 @@ public class PickCategories extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_categories);
+        createCustomActionBar();
     }
 
 

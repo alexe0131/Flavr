@@ -2,6 +2,7 @@ package com.cs147.flavr;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -35,6 +36,13 @@ import java.util.List;
 public class EventInformation extends Activity {
     public ArgMap currEvent;
 
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Event Information");
+    }
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
@@ -147,6 +155,7 @@ public class EventInformation extends Activity {
         setContentView(R.layout.activity_event_information);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         Intent eventInfo = getIntent();
+        createCustomActionBar();
         int listPosition = 0;
         listPosition = eventInfo.getIntExtra(GetFoodList.EXTRA, listPosition);
         ArgMap event = MainActivity.events.get(listPosition);

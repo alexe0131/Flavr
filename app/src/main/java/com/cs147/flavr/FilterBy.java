@@ -3,10 +3,18 @@ package com.cs147.flavr;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import net.java.jddac.common.type.ArgMap;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FilterBy extends Activity {
@@ -15,6 +23,50 @@ public class FilterBy extends Activity {
     public boolean filterLocation;
     public boolean filterExpireTime;
     public static String CATEGORY_SORT = "category";
+
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Filters");
+    }
+    public void sortNormal(View view) {
+        Intent sort = new Intent(this, GetFoodList.class);
+        startActivity(sort);
+    }
+    public void sortExpiration(View view) {
+        List<ArgMap> arr = MainActivity.events;
+        for (int i = 0; i < arr.size() - 1; i++)
+        {
+            int index = i;
+            for (int j = i + 1; j < arr.size(); j++)
+                if (Integer.parseInt(arr.get(j).getString(GetFoodList.END_HOUR)) < Integer.parseInt(arr.get(index).getString(GetFoodList.END_HOUR))) index = j;
+
+            ArgMap smallerNumber = arr.get(index);
+            arr.set(index,arr.get(i));
+            arr.set(i, smallerNumber);
+        }
+        MainActivity.events = arr;
+        Intent sort = new Intent(this, GetFoodList.class);
+        startActivity(sort);
+    }
+    public void sortDistance(View view) {
+        List<ArgMap> arr = MainActivity.events;
+        for (int i = 0; i < arr.size() - 1; i++)
+        {
+            int index = i;
+            for (int j = i + 1; j < arr.size(); j++)
+                if (Double.parseDouble(arr.get(j).getString(GetFoodList.DISTANCE)) < Double.parseDouble(arr.get(index).getString(GetFoodList.DISTANCE))) index = j;
+
+            ArgMap smallerNumber = arr.get(index);
+            arr.set(index,arr.get(i));
+            arr.set(i, smallerNumber);
+        }
+    MainActivity.events = arr;
+    Intent sort = new Intent(this, GetFoodList.class);
+        startActivity(sort);
+    }
     public void sortCategory(View view) {
         Intent sort = new Intent(this, FilterCategory.class);
         startActivity(sort);
@@ -32,6 +84,7 @@ public class FilterBy extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_by);
+        createCustomActionBar();
     }
 
 
