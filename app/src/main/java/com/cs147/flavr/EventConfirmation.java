@@ -3,6 +3,7 @@ package com.cs147.flavr;
 
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.os.Bundle;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -108,7 +109,12 @@ public class EventConfirmation extends FragmentActivity{
             capacity.setText("Max Capacity: "+event.getString(GetFoodList.CAPACITY));
             capacity.setTypeface(openSans);
             ImageView eventImage = (ImageView) findViewById(R.id.event_image);
-            eventImage.setImageBitmap(createEvent.yourSelectedImage);
+        int imageResource = getResources().getIdentifier(event.getString(GetFoodList.IMAGE), null, "com.cs147.flavr");
+        if(imageResource != 0) {
+            Drawable custom = getResources().getDrawable((imageResource));
+            eventImage.setImageDrawable(custom);
+        }
+            else eventImage.setImageBitmap(createEvent.yourSelectedImage);
     }
     /* Retrieves the times that the user entered on the previous screen and uses these to
     * calculate how long until the start and end times the user is.

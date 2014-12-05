@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -99,7 +100,13 @@ public class EventInformation extends Activity {
         sb.setSpan(b, 0, 0+event.getString(GetFoodList.ATTENDANCE).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         attendance.setText(sb);
         ImageView eventImage = (ImageView) findViewById(R.id.get_event_image);
-        eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE, EventListAdaptr.defaultPicture));
+        int imageResource = getResources().getIdentifier(event.getString(GetFoodList.IMAGE), null, "com.cs147.flavr");
+        if(imageResource != 0) {
+            Drawable custom = getResources().getDrawable((imageResource));
+            eventImage.setImageDrawable(custom);
+        }
+        else eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE));
+
     }
 
     private LatLng getLocationFromAddress(String strAddress) {
