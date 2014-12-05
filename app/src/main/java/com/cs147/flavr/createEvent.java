@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -30,6 +31,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import net.java.jddac.common.type.ArgMap;
+
+import org.w3c.dom.Text;
 
 
 public class createEvent extends Activity {
@@ -207,6 +210,7 @@ public class createEvent extends Activity {
         createCustomActionBar();
         yourSelectedImage = BitmapFactory.decodeResource(getResources(), R.drawable.noimage);
         Typeface open = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
+        Typeface alegreyaBold = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_bold.ttf");
         TextView food = (TextView) findViewById(R.id.food_type_label);
         EditText foodEntry = (EditText) findViewById(R.id.food_type);
         food.setTypeface(open);
@@ -235,10 +239,17 @@ public class createEvent extends Activity {
         Button diet = (Button) findViewById(R.id.dietary_accomodations);
         Button image = (Button) findViewById(R.id.uploadimage);
         Button submit = (Button) findViewById(R.id.submit);
-        categories.setTypeface(open);
-        diet.setTypeface(open);
-        image.setTypeface(open);
-        submit.setTypeface(open);
+        categories.setTypeface(alegreyaBold);
+        categories.setTextColor(Color.WHITE);
+        TextView catLabel = (TextView) findViewById(R.id.category_label);
+        catLabel.setTypeface(open);
+        TextView dietLabel = (TextView) findViewById(R.id.diet_label);
+        dietLabel.setTypeface(open);
+        diet.setTypeface(alegreyaBold);
+        diet.setTextColor(Color.WHITE);
+        image.setTypeface(alegreyaBold);
+        submit.setTypeface(alegreyaBold);
+        submit.setTextColor(Color.WHITE);
         if (savedInstanceState != null) {
             // Restore value of members from saved state
 

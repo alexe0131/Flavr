@@ -4,4 +4,6 @@
         android:orderInCategory="100" android:showAsAction="never"/>
     <item android:id="@+id/myevents" android:title="My Events"
         android:orderInCategory="100" android:showAsAction="never"/>
+    <item android:id="@+id/notifications" android:title="Notifications"
+        android:orderInCategory="100" android:showAsAction="never"/>
 </menu>

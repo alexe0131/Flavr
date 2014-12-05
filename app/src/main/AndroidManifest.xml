@@ -114,7 +114,8 @@
         </activity>
         <activity
             android:name="com.cs147.flavr.FlavrNotifications"
-            android:label="Set Notifications" >
+            android:label="Set Notifications"
+            android:parentActivityName="com.cs147.flavr.GetFoodList">
         </activity>
 
         <activity
