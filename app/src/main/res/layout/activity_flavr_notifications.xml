@@ -13,25 +13,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textSize="16dp"
-            android:text="Notify me for "
-            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="    Notify me for "
             android:id="@+id/notifyduration_label"></TextView>
         <EditText
-            android:layout_width="50dp"
+            android:layout_width="100dp"
             android:layout_height="50dp"
             android:id="@+id/duration"
-            android:hint="Select number of hours"
-            android:inputType="number"
-            android:layout_weight="1">
+            android:inputType="number">
             </EditText>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textSize="16dp"
+            android:textSize="18dp"
             android:text=" hours."
             android:id="@+id/notifyhours"/>
-</LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/notifytimes"
         android:layout_width="match_parent"
@@ -39,25 +36,21 @@
         android:orientation="horizontal"
         android:layout_marginTop="50dp"
         android:layout_gravity="center_horizontal">
-
-    <TextView
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="100dp"
             android:layout_height="50dp"
-            android:textSize="16dp"
-            android:text="Notify me "
-            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="    Notify me "
             android:id="@+id/notifytimes_label"></TextView>
         <EditText
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="106dp"
+            android:layout_height="match_parent"
             android:id="@+id/notifytimeentry"
-            android:inputType="number"
-            android:layout_weight="1">
-        </EditText>
+            android:inputType="number"></EditText>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:textSize="16dp"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
             android:text=" times."
             android:id="@+id/notifytimelabel"/>
     </LinearLayout>
@@ -67,6 +60,7 @@
         android:layout_height="50dp"
         android:background="@drawable/roundedbuttongreen"
         android:text="Save"
+        android:textColor="#FFF"
         android:id="@+id/save_notifications"
         android:textSize="20dp"
         android:layout_gravity="center"
