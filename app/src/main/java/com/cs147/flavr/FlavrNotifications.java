@@ -30,6 +30,9 @@ public class FlavrNotifications extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flavr_notifications);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        Button saveInfoButton = (Button) findViewById(R.id.save_notifications);
+        saveInfoButton.setTypeface(alegreya);
         createCustomActionBar();
     }
 
