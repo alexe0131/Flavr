@@ -4,7 +4,7 @@
     android:layout_width="match_parent">
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:background="@drawable/roundedbuttonblue"
         android:text="Food Category"
@@ -12,24 +12,23 @@
         android:textSize="20dp"
         android:onClick="sortCategory"
         android:layout_gravity="center"
-        android:layout_marginBottom="25dp"
         android:layout_marginTop="25dp"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:background="@drawable/roundedbuttonblue"
         android:text="Time Posted"
+        android:onClick="sortNormal"
         android:id="@+id/filter_time"
         android:textSize="20dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="25dp"
         android:layout_marginTop="25dp"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:background="@drawable/roundedbuttonblue"
         android:text="Dietary Preferences"
@@ -37,31 +36,42 @@
         android:textSize="20dp"
         android:layout_gravity="center"
         android:onClick="sortDiet"
-        android:layout_marginBottom="25dp"
         android:layout_marginTop="25dp"/>
 
     <Button
+    style="?android:attr/buttonStyleSmall"
+    android:layout_width="200dp"
+    android:layout_height="50dp"
+    android:background="@drawable/roundedbuttonblue"
+    android:text="By Distance"
+        android:onClick="sortDistance"
+    android:id="@+id/filter_location"
+    android:textSize="20dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="25dp"/>
+    <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:background="@drawable/roundedbuttonblue"
-        android:text="By Distance"
-        android:id="@+id/filter_location"
+        android:text="By Event Expiration"
+        android:onClick="sortExpiration"
+        android:id="@+id/filter_expiretime"
         android:textSize="20dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="25dp"
         android:layout_marginTop="25dp"/>
+
+
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:background="@drawable/roundedbuttongreen"
-        android:text="Expire Time"
+        android:text="Set Notifications"
         android:id="@+id/setnotification"
         android:textSize="20dp"
         android:onClick="setNotifications"
         android:layout_gravity="center"
-        android:layout_marginBottom="25dp"
         android:layout_marginTop="25dp"/>
 </LinearLayout>

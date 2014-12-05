@@ -2,22 +2,32 @@ package com.cs147.flavr;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import net.java.jddac.common.type.ArgMap;
 
 
 public class UserEvents extends Activity {
-
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("My Events");
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_events);
+        createCustomActionBar();
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         ListView userEvents = (ListView) findViewById(R.id.user_events);
         if(!MainActivity.userEvents.isEmpty()) {
@@ -28,7 +38,7 @@ public class UserEvents extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     ArgMap event = (ArgMap) view.getTag();
-                    Intent eventInfo = new Intent(getApplicationContext(), EventInformation.class);
+                    Intent eventInfo = new Intent(getApplicationContext(), EventConfirmation.class);
                     eventInfo.putExtra(event.getString(GetFoodList.EXTRA), i);
                     startActivity(eventInfo);
                 }

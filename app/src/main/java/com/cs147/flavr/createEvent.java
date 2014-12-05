@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -146,6 +147,13 @@ public class createEvent extends Activity {
             mNotificationManager.notify(123, mBuilder.build());
         }
     }
+    public void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Create Event");
+    }
     /*Upon the clicking of the submit button, reads all the strings and times from the event listing and puts them into an respective arrays to be passed into
     *the next activity of confirming the event. Bundles these into an extra for the intent
     * and goes to event confirmation.
@@ -196,6 +204,7 @@ public class createEvent extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+        createCustomActionBar();
         yourSelectedImage = BitmapFactory.decodeResource(getResources(), R.drawable.noimage);
         Typeface open = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
         TextView food = (TextView) findViewById(R.id.food_type_label);

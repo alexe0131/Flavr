@@ -1,6 +1,9 @@
 package com.cs147.flavr;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import net.java.jddac.common.type.ArgMap;
 import net.java.jddac.util.StringUtil;
@@ -28,6 +32,13 @@ public class MainActivity extends Activity {
     public static List<String> allCategories = Arrays.asList("Asian Cuisine", "Baked Foods", "BBQ Food", "Beverages", "Coffee or Tea", "Dessert", "Doughnuts", "Ethnic Food", "Fast Food",
             "Fish or Seafood", "Frozen Yogurt", "Ice Cream", "Meat", "Mexican Food", "Pancakes or Waffles", "Pizza", "Various Protein", "Sandwiches", "Snacks", "Soup or Salad");
 
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Flavr");
+    }
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
@@ -59,7 +70,15 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        createCustomActionBar();
         setContentView(R.layout.activity_main);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_bold.ttf");
+        Button get = (Button) findViewById(R.id.get_food);
+        get.setTypeface(alegreya);
+        get.setTextColor(Color.WHITE);
+        Button give = (Button) findViewById(R.id.give_food);
+        give.setTypeface(alegreya);
+        give.setTextColor(Color.WHITE);
         MainActivity.events = readAndroidEmbeddedCSVFile();
     }
 

@@ -2,11 +2,14 @@ package com.cs147.flavr;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,13 @@ public class DietaryAccomodations extends Activity {
 
     public void saveEvent(View view) {
         finish();
+    }
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Dietary Accommodations");
     }
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
@@ -48,6 +58,7 @@ public class DietaryAccomodations extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dietary_accomodations);
+        createCustomActionBar();
     }
 
 

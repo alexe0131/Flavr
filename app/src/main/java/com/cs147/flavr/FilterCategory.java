@@ -2,23 +2,34 @@ package com.cs147.flavr;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import net.java.jddac.common.type.ArgMap;
 
 
 public class FilterCategory extends Activity {
     public static String CATEGORY = "chosen category";
+    private void createCustomActionBar() {
+        int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
+        TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        actionBarTitleView.setTypeface(alegreya);
+        getActionBar().setTitle("Filter By Category");
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_category);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        createCustomActionBar();
         ListView category = (ListView) findViewById(R.id.categorylist);
         CategoryListAdapter catAdapter = new CategoryListAdapter(getApplicationContext(), R.layout.categorybutton, MainActivity.allCategories);
         category.setAdapter(catAdapter);
