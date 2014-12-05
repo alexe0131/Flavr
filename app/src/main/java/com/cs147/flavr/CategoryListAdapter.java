@@ -3,6 +3,7 @@ package com.cs147.flavr;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class CategoryListAdapter extends ArrayAdapter<String> {
         String string = foodCategories.get(position);
         rowView.setTag(string);
         TextView eventFood = (TextView) rowView.findViewById(R.id.category);
+        eventFood.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/opensans_regular.ttf"));
         eventFood.setText(string);
         return rowView;
     }

@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TableRow.LayoutParams;
+import android.widget.Toast;
 
 
 public class GetFoodList extends Activity {
@@ -37,6 +38,7 @@ public class GetFoodList extends Activity {
     public static final String EXTRA = "extra";
     public static final String ATTENDANCE = "Attendance";
     public static final String DISTANCE = "Distance";
+    public static final String ATTENDING = "Attending";
 
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
@@ -74,7 +76,15 @@ public class GetFoodList extends Activity {
         String category = intent.getStringExtra(FilterCategory.CATEGORY);
         String diet = intent.getStringExtra(FilterDiet.DIET);
         EventListAdaptr eventAdapter;
-        if(category != null && MainActivity.categories != null) eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.categories.get(category));
+        if(category != null && MainActivity.categories.get(category) == null){
+            Toast.makeText(getApplicationContext(),"No events match your criteria", Toast.LENGTH_LONG).show();
+            eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
+        }
+        if(diet != null && MainActivity.categories.get(category) == null){
+            Toast.makeText(getApplicationContext(),"No events match your criteria", Toast.LENGTH_LONG).show();
+            eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
+        }
+        else if(category != null && MainActivity.categories != null) eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.categories.get(category));
         else if(diet != null && MainActivity.dietChoices != null) eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.dietChoices.get(diet));
         else eventAdapter = new EventListAdaptr(getApplicationContext(), R.layout.event_entry, MainActivity.events);
         eventPage.setAdapter(eventAdapter);

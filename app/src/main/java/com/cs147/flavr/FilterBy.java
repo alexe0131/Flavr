@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import net.java.jddac.common.type.ArgMap;
@@ -81,6 +82,17 @@ public class FilterBy extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_by);
         createCustomActionBar();
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        Button category = (Button) findViewById(R.id.filter_category);
+        category.setTypeface(alegreya);
+        Button time = (Button) findViewById(R.id.filter_time);
+        time.setTypeface(alegreya);
+        Button diet = (Button) findViewById(R.id.filter_diet);
+        diet.setTypeface(alegreya);
+        Button loc = (Button) findViewById(R.id.filter_location);
+        loc.setTypeface(alegreya);
+        Button expire = (Button) findViewById(R.id.filter_expiretime);
+        expire.setTypeface(alegreya);
     }
 
 

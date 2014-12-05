@@ -184,6 +184,7 @@ public class createEvent extends Activity {
             newEvent.put(GetFoodList.CAPACITY, capacity);
             newEvent.put(GetFoodList.ATTENDANCE, 0);
             newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
+            newEvent.put(GetFoodList.ATTENDING, 0);
             double rangeMin = 0.1;
             double rangeMax=3.0;
             Random r = new Random();

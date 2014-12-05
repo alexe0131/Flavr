@@ -35,13 +35,27 @@ import java.util.List;
 
 public class EventInformation extends Activity {
     public ArgMap currEvent;
-
+    public boolean attending = false;
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
         Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Event Information");
+    }
+
+    public void unAttend(View view) {
+        Button going = (Button) findViewById(R.id.im_going);
+        going.setBackgroundDrawable(getResources().getDrawable(R.drawable.roundedbuttonblue));
+        going.setText("I'm Going!");
+        going.setActivated(true);
+        String currAttendance = currEvent.getString(GetFoodList.ATTENDANCE);
+        int attendance = Integer.parseInt(currAttendance);
+        attendance--;
+        currEvent.put(GetFoodList.ATTENDANCE, attendance);
+        currEvent.put(GetFoodList.ATTENDING, 0);
+        Button notGoing = (Button) findViewById(R.id.not_going);
+        notGoing.setVisibility(View.GONE);
     }
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
@@ -56,6 +70,9 @@ public class EventInformation extends Activity {
         int attendance = Integer.parseInt(currAttendance);
         attendance++;
         currEvent.put(GetFoodList.ATTENDANCE, attendance);
+        currEvent.put(GetFoodList.ATTENDING, 1);
+        Button notGoing = (Button) findViewById(R.id.not_going);
+        notGoing.setVisibility(View.VISIBLE);
     }
     private void fillData(ArgMap event) {
         TextView eventTitle = (TextView) findViewById(R.id.get_event_food);
@@ -154,11 +171,25 @@ public class EventInformation extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_information);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_bold.ttf");
+        Button notGoing = (Button) findViewById(R.id.not_going);
+        Button going = (Button) findViewById(R.id.im_going);
+        notGoing.setTypeface(alegreya);
+        going.setTypeface(alegreya);
+        notGoing.setTextColor(Color.WHITE);
+        going.setTextColor(Color.WHITE);
+        notGoing.setVisibility(View.GONE);
         Intent eventInfo = getIntent();
         createCustomActionBar();
         int listPosition = 0;
         listPosition = eventInfo.getIntExtra(GetFoodList.EXTRA, listPosition);
         ArgMap event = MainActivity.events.get(listPosition);
+        if(Integer.parseInt(event.getString(GetFoodList.ATTENDING)) == 1) {
+            going.setBackgroundDrawable(getResources().getDrawable(R.drawable.roundedbuttongreen));
+            going.setText("See You There");
+            going.setActivated(false);
+            notGoing.setVisibility(View.VISIBLE);
+        }
         currEvent = event;
         fillData(event);
         printEventExpiry(event);
