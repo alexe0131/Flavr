@@ -45,6 +45,11 @@ public class GetFoodList extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Food Events");
     }
+
+    private void notifications() {
+        Intent notify = new Intent(this, FlavrNotifications.class);
+        startActivity(notify);
+    }
     private void filter() {
         Intent filters = new Intent(this, FilterBy.class);
         startActivity(filters);
@@ -103,6 +108,9 @@ public class GetFoodList extends Activity {
         switch (item.getItemId()) {
             case R.id.filters:
                 filter();
+                return true;
+            case R.id.notifications:
+                notifications();
                 return true;
             case R.id.myevents:
                 userEvents();

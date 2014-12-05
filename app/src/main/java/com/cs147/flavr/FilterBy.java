@@ -72,10 +72,6 @@ public class FilterBy extends Activity {
         startActivity(sort);
     }
 
-    public void setNotifications(View view) {
-        Intent notify = new Intent(this, FlavrNotifications.class);
-        startActivity(notify);
-    }
     public void sortDiet(View view) {
         Intent sort = new Intent(this, FilterDiet.class);
         startActivity(sort);
@@ -106,7 +102,6 @@ public class FilterBy extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

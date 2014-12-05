@@ -97,15 +97,16 @@ public class EventConfirmation extends FragmentActivity{
             location.setText(event.getString(GetFoodList.LOCATION));
             TextView attendance = (TextView) findViewById(R.id.confirmation_attendance);
             attendance.setTypeface(openSans);
-        SpannableStringBuilder sb = new SpannableStringBuilder("You currently have "+event.getString(GetFoodList.ATTENDANCE)+" attending.");
+        SpannableStringBuilder sb = new SpannableStringBuilder("You Currently Have "+event.getString(GetFoodList.ATTENDANCE)+" Attending.");
         StyleSpan b = new StyleSpan(Typeface.BOLD);
-        sb.setSpan(b, 19, 19+event.getString(GetFoodList.ATTENDANCE).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        sb.setSpan(b, 19, 19+event.getString(GetFoodList.ATTENDANCE).length()+event.getString(GetFoodList.CAPACITY).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             attendance.setText(sb);
         TextView distance = (TextView) findViewById(R.id.confirmation_distance);
         distance.setTypeface(font);
         distance.setText(event.getString(GetFoodList.DISTANCE) + " miles away");
             TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
-            capacity.setText(event.getString(GetFoodList.CAPACITY));
+            capacity.setText("Max Capacity: "+event.getString(GetFoodList.CAPACITY));
+            capacity.setTypeface(openSans);
             ImageView eventImage = (ImageView) findViewById(R.id.event_image);
             eventImage.setImageBitmap(createEvent.yourSelectedImage);
     }
@@ -153,7 +154,6 @@ public class EventConfirmation extends FragmentActivity{
             int minDiff = endMin - sysMin;
             endText.setText("Expires in: "+ Integer.toString(minDiff)+" minutes.");
         }
-
     }
 
     private void editEvent() {

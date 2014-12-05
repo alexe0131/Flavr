@@ -19,7 +19,7 @@ public class FlavrNotifications extends Activity {
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
         Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
         actionBarTitleView.setTypeface(alegreya);
-        getActionBar().setTitle("Flavr");
+        getActionBar().setTitle("Notifications");
     }
     public void saveNotifications(View view) {
         notify=true;
