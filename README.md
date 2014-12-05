@@ -13,3 +13,5 @@ An app to help students connect with event hosts to reduce both waste of food an
 We had to hard-code in data for 15 events, and we require addresses to be complete and valid.
 
 We had to prioritized putting a map of where the event was over information on distance of an event from the user.
+
+See website at http://stanford.edu/class/cs147/projects/crowd/flavr/ for further information.
