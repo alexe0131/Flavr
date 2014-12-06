@@ -86,13 +86,15 @@ public class EventListAdaptr extends ArrayAdapter<ArgMap> {
         StyleSpan c = new StyleSpan(Typeface.BOLD);
         sb.setSpan(c, 0, 0+event.getString(GetFoodList.ATTENDANCE).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         eventAttendance.setText(sc);
-ImageView eventImage = (ImageView) rowView.findViewById(R.id.event_picture);
-        int imageResource = getContext().getResources().getIdentifier(event.getString(GetFoodList.IMAGE), null, "com.cs147.flavr");
-        if(imageResource != 0) {
-            Drawable custom = getContext().getResources().getDrawable(imageResource);
-            eventImage.setImageDrawable(custom);
+        ImageView eventImage = (ImageView) rowView.findViewById(R.id.event_picture);
+        if(MainActivity.userEvents.indexOf(event)== -1) {
+            int imageResource = getContext().getResources().getIdentifier(event.getString(GetFoodList.IMAGE), null, "com.cs147.flavr");
+            if (imageResource != 0) {
+                Drawable custom = getContext().getResources().getDrawable(imageResource);
+                eventImage.setImageDrawable(custom);
+            }
         }
-        else eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE));
+        else eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE, defaultPicture));
         return rowView;
     }
 }
