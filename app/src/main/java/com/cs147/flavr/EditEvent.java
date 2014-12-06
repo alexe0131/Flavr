@@ -75,17 +75,13 @@ public class EditEvent extends Activity {
     }
 
     private int[] parseTimes() {
-        int[] times = new int[4];
-        TimePicker startTimer = (TimePicker) findViewById(R.id.edit_start_time);
-        int startHour = startTimer.getCurrentHour();
-        int startMinute = startTimer.getCurrentMinute();
-        times[0] = startHour;
-        times[1] = startMinute;
         TimePicker endTimer = (TimePicker) findViewById(R.id.edit_end_time);
         int endHour = endTimer.getCurrentHour();
         int endMinute = endTimer.getCurrentMinute();
-        times[2] = endHour;
-        times[3] = endMinute;
+        int[]times = new int[2];
+        times[0] = endHour;
+        times[1] = endMinute;
+
         return times;
     }
 
@@ -100,9 +96,9 @@ public class EditEvent extends Activity {
         event.put(GetFoodList.DESCRIPTION, description.getText());
         EditText location = (EditText) findViewById(R.id.edit_location);
         event.put(GetFoodList.LOCATION, location.getText());
-
         EditText capacity = (EditText) findViewById(R.id.edit_capacity);
         event.put(GetFoodList.CAPACITY, capacity.getText());
+
         MainActivity.events.set(0, event);
         int[] times = parseTimes();
         change.putExtra(TIMES, times);
