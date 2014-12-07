@@ -54,7 +54,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBsyVWFerGUin0JDBG7CAihu6Mqc6z7Uho" />
+            android:value="AIzaSyAtunZse_bUO9g84ZQmRwlvoe_XDlcu3iA" />
 
         <activity
             android:name="com.cs147.flavr.GetFoodList"

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Flavr.iml" filepath="$PROJECT_DIR$/Flavr.iml" />
       <module fileurl="file://$PROJECT_DIR$/FlavrMaster.iml" filepath="$PROJECT_DIR$/FlavrMaster.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

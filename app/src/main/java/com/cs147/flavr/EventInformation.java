@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -176,6 +178,7 @@ public class EventInformation extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MapsInitializer.initialize(this);
         setContentView(R.layout.activity_event_information);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         Typeface alegreya = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_bold.ttf");
@@ -205,7 +208,7 @@ public class EventInformation extends Activity {
             GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.get_map)).getMap();
             gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
             Marker place = gMap.addMarker(new MarkerOptions()
-                    .position(location));
+                   .position(location));
         }
     }
 
