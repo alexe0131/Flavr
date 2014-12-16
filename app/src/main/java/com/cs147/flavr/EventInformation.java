@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -36,6 +39,8 @@ import java.util.List;
 public class EventInformation extends Activity {
     public ArgMap currEvent;
 
+    /* Set action bar font to system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -43,10 +48,33 @@ public class EventInformation extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Event Information");
     }
+
+    /* If the user decides to retract their RSVP, revert the event information page to
+    original format.
+     */
+    public void unAttend(View view) {
+        Button going = (Button) findViewById(R.id.im_going);
+        going.setBackgroundDrawable(getResources().getDrawable(R.drawable.roundedbuttonblue));
+        going.setText("I'm Going!");
+        going.setActivated(true);
+        String currAttendance = currEvent.getString(GetFoodList.ATTENDANCE);
+        int attendance = Integer.parseInt(currAttendance);
+        attendance--;
+        currEvent.put(GetFoodList.ATTENDANCE, attendance);
+        currEvent.put(GetFoodList.ATTENDING, 0);
+        Button notGoing = (Button) findViewById(R.id.not_going);
+        notGoing.setVisibility(View.GONE);
+    }
+
+    /* Allow the user to see a list of their created events.
+     */
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
     }
+
+    /* Allow user to RSVP to event, add button to allow them to retract RSVP.
+     */
     public void respondToInvite(View view) {
         Button going = (Button) findViewById(R.id.im_going);
         going.setBackgroundDrawable(getResources().getDrawable(R.drawable.roundedbuttongreen));
@@ -56,7 +84,13 @@ public class EventInformation extends Activity {
         int attendance = Integer.parseInt(currAttendance);
         attendance++;
         currEvent.put(GetFoodList.ATTENDANCE, attendance);
+        currEvent.put(GetFoodList.ATTENDING, 1);
+        Button notGoing = (Button) findViewById(R.id.not_going);
+        notGoing.setVisibility(View.VISIBLE);
     }
+
+    /* Add all the event data to the necessary fields
+     */
     private void fillData(ArgMap event) {
         TextView eventTitle = (TextView) findViewById(R.id.get_event_food);
         Typeface alegreya = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_regular.ttf");
@@ -82,9 +116,17 @@ public class EventInformation extends Activity {
         sb.setSpan(b, 0, 0+event.getString(GetFoodList.ATTENDANCE).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         attendance.setText(sb);
         ImageView eventImage = (ImageView) findViewById(R.id.get_event_image);
-        eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE, EventListAdaptr.defaultPicture));
+        int imageResource = getResources().getIdentifier(event.getString(GetFoodList.IMAGE), null, "com.cs147.flavr");
+        if(imageResource != 0) {
+            Drawable custom = getResources().getDrawable((imageResource));
+            eventImage.setImageDrawable(custom);
+        }
+        else eventImage.setImageBitmap((Bitmap) event.get(GetFoodList.IMAGE));
+
     }
 
+    /* Use google play services in order to look up an address and display it on the map/
+     */
     private LatLng getLocationFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(this);
         List<Address> address;
@@ -104,31 +146,16 @@ public class EventInformation extends Activity {
 
         return loc;
     }
+
+    /* Calculate and print the amount of time remaining until the event expires.
+     */
     private void printEventExpiry(ArgMap event) {
         Calendar c = Calendar.getInstance();
         int sysHour = c.get(Calendar.HOUR_OF_DAY);
         int sysMin = c.get(Calendar.MINUTE);
-
         Typeface open = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
-
-//        int startHour = times[0];
-//        int startMin = times[1];
         int endHour = Integer.parseInt(event.getString(GetFoodList.END_HOUR));
         int endMin = Integer.parseInt(event.getString(GetFoodList.END_MIN));
-//        TextView startText = (TextView) findViewById(R.id.get_event_starttime);
-//        if (startHour > sysHour) {
-//            int hourDiff = startHour - sysHour;
-//            int minDiff = startMin - sysMin;
-//            if(sysMin > startMin) {
-//                hourDiff--;
-//                minDiff += 60;
-//            }
-//            startText.setText("Your event starts in " + Integer.toString(hourDiff) + " hours and "+ Integer.toString(minDiff)+" minutes.");
-//        }
-//        if(startHour == sysHour && startMin >= sysMin) {
-//            int minDiff = startMin - sysMin;
-//            startText.setText("Your event starts in "+ Integer.toString(minDiff)+" minutes.");
-//        }
         TextView endText = (TextView) findViewById(R.id.get_event_endtime);
         endText.setTypeface(open);
         if (endHour > sysHour) {
@@ -152,13 +179,28 @@ public class EventInformation extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MapsInitializer.initialize(this);
         setContentView(R.layout.activity_event_information);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_bold.ttf");
+        Button notGoing = (Button) findViewById(R.id.not_going);
+        Button going = (Button) findViewById(R.id.im_going);
+        notGoing.setTypeface(alegreya);
+        going.setTypeface(alegreya);
+        notGoing.setTextColor(Color.WHITE);
+        going.setTextColor(Color.WHITE);
+        notGoing.setVisibility(View.GONE);
         Intent eventInfo = getIntent();
         createCustomActionBar();
         int listPosition = 0;
         listPosition = eventInfo.getIntExtra(GetFoodList.EXTRA, listPosition);
         ArgMap event = MainActivity.events.get(listPosition);
+        if(Integer.parseInt(event.getString(GetFoodList.ATTENDING)) == 1) {
+            going.setBackgroundDrawable(getResources().getDrawable(R.drawable.roundedbuttongreen));
+            going.setText("See You There");
+            going.setActivated(false);
+            notGoing.setVisibility(View.VISIBLE);
+        }
         currEvent = event;
         fillData(event);
         printEventExpiry(event);

@@ -6,6 +6,8 @@
     android:layout_marginLeft="15dp">
     <ImageView
         android:layout_width="100dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
         android:layout_height="100dp"
         android:id = "@+id/event_picture"/>
 <LinearLayout

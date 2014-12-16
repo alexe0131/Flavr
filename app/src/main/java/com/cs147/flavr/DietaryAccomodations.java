@@ -21,6 +21,9 @@ public class DietaryAccomodations extends Activity {
     public void saveEvent(View view) {
         finish();
     }
+
+    /* Set action bar font to match system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -28,6 +31,9 @@ public class DietaryAccomodations extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Dietary Accommodations");
     }
+
+    /* Add the dietary options selected by the user to the list to be used for sorting.
+     */
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();

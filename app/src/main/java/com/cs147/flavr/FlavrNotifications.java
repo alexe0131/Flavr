@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
 public class FlavrNotifications extends Activity {
     public static boolean notify;
 
+    /* Set action bar font to system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -21,6 +24,9 @@ public class FlavrNotifications extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Notifications");
     }
+
+    /* Save the boolean that says whether the user has notifications enabled or not.
+     */
     public void saveNotifications(View view) {
         notify=true;
         Intent notifications = new Intent(this, GetFoodList.class);
@@ -30,6 +36,9 @@ public class FlavrNotifications extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flavr_notifications);
+        Typeface alegreya = Typeface.createFromAsset(getAssets(),"fonts/alegreyasanssc_bold.ttf");
+        Button saveInfoButton = (Button) findViewById(R.id.save_notifications);
+        saveInfoButton.setTypeface(alegreya);
         createCustomActionBar();
     }
 

@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         map:mapType="normal"
@@ -29,7 +30,10 @@
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp">
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -67,24 +71,27 @@
                     android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
-        <TextView android:layout_width="wrap_content"
+        <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="16dp"
             android:id="@+id/confirmation_description"
-            android:layout_gravity="left" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:id= "@+id/confirmation_attendance"
             android:gravity="center_horizontal"
             android:textColor="#009933"
             android:textSize="22dp"/>
 
-        <TextView android:layout_width="wrap_content"
+        <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="16dp"
+            android:text="N/A"
             android:id="@+id/confirmation_capacity"
             android:gravity="center_horizontal" />
 

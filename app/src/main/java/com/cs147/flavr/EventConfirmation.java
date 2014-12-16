@@ -3,6 +3,7 @@ package com.cs147.flavr;
 
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.os.Bundle;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,10 +31,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import net.java.jddac.common.type.ArgMap;
 
 public class EventConfirmation extends FragmentActivity{
-    public final static String EVENT_STRINGS = "event strings";
 
-    public final static String EVENT_TIMES = "event times";
     public static ArgMap currEvent;
+
+    /* Set action bar font to match system standard/
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -42,6 +44,8 @@ public class EventConfirmation extends FragmentActivity{
         getActionBar().setTitle("Event Confirmation");
     }
 
+    /* Delete the event from all lists
+     */
     private void deleteEvent(){
         MainActivity.events.remove(currEvent);
         MainActivity.userEvents.remove(currEvent);
@@ -50,6 +54,8 @@ public class EventConfirmation extends FragmentActivity{
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);
     }
+    /* Bring the user to a page showing their created events
+     */
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
@@ -81,34 +87,39 @@ public class EventConfirmation extends FragmentActivity{
     /* Iterates through the array of event info and prints it out on the confirmation screen.
     */
     public void printEventInfo(ArgMap event) {
-            TextView eventTitle = (TextView) findViewById(R.id.confirmation_food);
+        TextView eventTitle = (TextView) findViewById(R.id.confirmation_food);
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_regular.ttf");
         Typeface openSans = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
         eventTitle.setTypeface(font);
-            eventTitle.setText(event.getString(GetFoodList.FOOD));
-            TextView food = (TextView) findViewById(R.id.confirmation_event);
-            food.setTypeface(font);
-            food.setText(event.getString(GetFoodList.EVENT));
-            TextView description = (TextView) findViewById(R.id.confirmation_description);
-         description.setTypeface(openSans);
-            description.setText(event.getString(GetFoodList.DESCRIPTION));
-            TextView location = (TextView) findViewById(R.id.confirmation_location);
-            location.setTypeface(font);
-            location.setText(event.getString(GetFoodList.LOCATION));
-            TextView attendance = (TextView) findViewById(R.id.confirmation_attendance);
-            attendance.setTypeface(openSans);
+        eventTitle.setText(event.getString(GetFoodList.FOOD));
+        TextView food = (TextView) findViewById(R.id.confirmation_event);
+        food.setTypeface(font);
+        food.setText(event.getString(GetFoodList.EVENT));
+        TextView description = (TextView) findViewById(R.id.confirmation_description);
+        description.setTypeface(openSans);
+        description.setText(event.getString(GetFoodList.DESCRIPTION));
+        TextView location = (TextView) findViewById(R.id.confirmation_location);
+        location.setTypeface(font);
+        location.setText(event.getString(GetFoodList.LOCATION));
+        TextView attendance = (TextView) findViewById(R.id.confirmation_attendance);
+        attendance.setTypeface(openSans);
         SpannableStringBuilder sb = new SpannableStringBuilder("You Currently Have "+event.getString(GetFoodList.ATTENDANCE)+" Attending.");
         StyleSpan b = new StyleSpan(Typeface.BOLD);
         sb.setSpan(b, 19, 19+event.getString(GetFoodList.ATTENDANCE).length()+event.getString(GetFoodList.CAPACITY).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            attendance.setText(sb);
+        attendance.setText(sb);
         TextView distance = (TextView) findViewById(R.id.confirmation_distance);
         distance.setTypeface(font);
         distance.setText(event.getString(GetFoodList.DISTANCE) + " miles away");
-            TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
-            capacity.setText("Max Capacity: "+event.getString(GetFoodList.CAPACITY));
-            capacity.setTypeface(openSans);
-            ImageView eventImage = (ImageView) findViewById(R.id.event_image);
-            eventImage.setImageBitmap(createEvent.yourSelectedImage);
+        TextView capacity = (TextView) findViewById(R.id.confirmation_capacity);
+        capacity.setText("Max Capacity: "+event.getString(GetFoodList.CAPACITY));
+        capacity.setTypeface(openSans);
+        ImageView eventImage = (ImageView) findViewById(R.id.event_image);
+        int imageResource = getResources().getIdentifier(event.getString(GetFoodList.IMAGE), null, "com.cs147.flavr");
+        if(imageResource != 0) {
+            Drawable custom = getResources().getDrawable((imageResource));
+            eventImage.setImageDrawable(custom);
+        }
+        else eventImage.setImageBitmap(createEvent.yourSelectedImage);
     }
     /* Retrieves the times that the user entered on the previous screen and uses these to
     * calculate how long until the start and end times the user is.
@@ -117,24 +128,9 @@ public class EventConfirmation extends FragmentActivity{
         Calendar c = Calendar.getInstance();
         int sysHour = c.get(Calendar.HOUR_OF_DAY);
         int sysMin = c.get(Calendar.MINUTE);
-//        int startHour = times[0];
-//        int startMin = times[1];
+
         int endHour = Integer.parseInt(event.getString(GetFoodList.END_HOUR));
         int endMin = Integer.parseInt(event.getString(GetFoodList.END_MIN));
-//        TextView startText = (TextView) findViewById(R.id.confirmation_start_time);
-//        if (startHour > sysHour) {
-//            int hourDiff = startHour - sysHour;
-//            int minDiff = startMin - sysMin;
-//            if(sysMin > startMin) {
-//                hourDiff--;
-//                minDiff += 60;
-//            }
-//            startText.setText("Your event starts in " + Integer.toString(hourDiff) + " hours and "+ Integer.toString(minDiff)+" minutes.");
-//        }
-//        if(startHour == sysHour && startMin >= sysMin) {
-//            int minDiff = startMin - sysMin;
-//            startText.setText("Your event starts in "+ Integer.toString(minDiff)+" minutes.");
-//        }
         Typeface openSans = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
 
         TextView endText = (TextView) findViewById(R.id.confirmation_end_time);
@@ -156,6 +152,8 @@ public class EventConfirmation extends FragmentActivity{
         }
     }
 
+    /* Start the activity to allow the user to edit a created event.
+     */
     private void editEvent() {
         Intent edit = new Intent(this, EditEvent.class);
         startActivity(edit);

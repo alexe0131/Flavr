@@ -26,25 +26,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import net.java.jddac.common.type.ArgMap;
-
-import org.w3c.dom.Text;
-
 
 public class createEvent extends Activity {
 
-    public List<ArgMap> myEvents;
-    //Temporary array for event string information.
-    public final static String EVENT_STRINGS = "temp";
     //Temporary array for event time information.
     public final static String EVENT_TIMES = "tempTimes";
     //Temp integer to hold image later.
     public final static int SELECT_PHOTO = 100;
-
     public static Bitmap yourSelectedImage;
     public static Uri selectedImage;
     static final String STATE_FOOD = "saveFood";
@@ -52,6 +43,9 @@ public class createEvent extends Activity {
     static final String STATE_DESCRIPTION = "saveDescription";
     static final String STATE_LOCATION = "saveLocation";
     static final String STATE_CAPACITY = "saveCapacity";
+
+    /* Bring User to a list of events they have created
+    */
 
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
@@ -64,26 +58,26 @@ public class createEvent extends Activity {
         return editText.getText().toString();
     }
 
+    /* Give helpful error message if a required field isn't filled in.
+    */
     private void giveToastError(String error) {
         if(error == "foodType")  Toast.makeText(getApplicationContext(), "Please enter a valid food type.", Toast.LENGTH_LONG).show();
         else if(error == "eventTitle")  Toast.makeText(getApplicationContext(), "Please enter a valid event title.", Toast.LENGTH_LONG).show();
         else if(error == "location")  Toast.makeText(getApplicationContext(), "Please enter a valid location.", Toast.LENGTH_LONG).show();
     }
 
+    /* Start activity to read in a custom image
+     */
     public void uploadImage(View view) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, SELECT_PHOTO);
 
     }
-
+    /* From the time picker in the create event form, extract times.
+     */
     private int[] parseTimes() {
         int[] times = new int[2];
-//        TimePicker startTimer = (TimePicker) findViewById(R.id.start_time);
-//        int startHour = startTimer.getCurrentHour();
-//        int startMinute = startTimer.getCurrentMinute();
-//        times[0] = startHour;
-//        times[1] = startMinute;
         TimePicker endTimer = (TimePicker) findViewById(R.id.end_time);
         int endHour = endTimer.getCurrentHour();
         int endMinute = endTimer.getCurrentMinute();
@@ -92,15 +86,22 @@ public class createEvent extends Activity {
 
         return times;
     }
-
+    /* Start activity to allow user to pick dietary accommodations.
+     */
     public void dietaryAccomodations(View view) {
         Intent diet = new Intent(this, DietaryAccomodations.class);
         startActivity(diet);
     }
+
+    /* Start activity to allow user to pick food categories
+     */
     public void pickCategories(View view) {
         Intent categories = new Intent(this, PickCategories.class);
         startActivity(categories);
     }
+
+    /* Extract the dietary options selected by user
+     */
     public void determineDiet(ArgMap event) {
         for(String string : MainActivity.dietPrefs) {
             if(DietaryAccomodations.diet.indexOf(string) != -1) {
@@ -117,6 +118,9 @@ public class createEvent extends Activity {
             }
         }
     }
+
+    /* Extract food categories chosen by user
+     */
     public void determineCategories(ArgMap event) {
         for (String string : MainActivity.allCategories) {
             if (PickCategories.categories.indexOf(string) != -1) {
@@ -134,12 +138,14 @@ public class createEvent extends Activity {
         }
     }
 
+    /* Notify the user that an event has been found for them.
+     */
     public void notifications(ArgMap event) {
         if(FlavrNotifications.notify == true) {
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.flavrlogo)
                     .setContentTitle("Flavr")
-                    .setContentText("Flavr has found an event matching your specifications.");
+                    .setContentText("Flavr has found an event for you!");
             Intent resultIntent = new Intent(this, EventInformation.class);
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
             stackBuilder.addParentStack(EventInformation.class);
@@ -150,6 +156,8 @@ public class createEvent extends Activity {
             mNotificationManager.notify(123, mBuilder.build());
         }
     }
+    /* Set the font of action bar title to the correct system font.
+     */
     public void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -184,6 +192,7 @@ public class createEvent extends Activity {
             newEvent.put(GetFoodList.CAPACITY, capacity);
             newEvent.put(GetFoodList.ATTENDANCE, 0);
             newEvent.put(GetFoodList.IMAGE, yourSelectedImage);
+            newEvent.put(GetFoodList.ATTENDING, 0);
             double rangeMin = 0.1;
             double rangeMax=3.0;
             Random r = new Random();
@@ -202,7 +211,8 @@ public class createEvent extends Activity {
         }
     }
 
-
+    /* Format text fields and buttons to match app design.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -252,7 +262,6 @@ public class createEvent extends Activity {
         submit.setTextColor(Color.WHITE);
         if (savedInstanceState != null) {
             // Restore value of members from saved state
-
             foodEntry.setText(savedInstanceState.getString(STATE_FOOD));
             eventEntry.setText(savedInstanceState.getString(STATE_EVENT));
             descriptionEntry.setText(savedInstanceState.getString(STATE_DESCRIPTION));
@@ -284,10 +293,10 @@ public class createEvent extends Activity {
                 return super.onOptionsItemSelected(item);
         }
 
-}
+    }
     @Override
     /* Gets image from user for event and converts to Bitmap
-     */
+    */
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         switch(requestCode) {
@@ -303,6 +312,8 @@ public class createEvent extends Activity {
                 }
         }
     }
+    /* Save the entries that the user has already entered.
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         EditText food = (EditText) findViewById(R.id.food_type);
