@@ -15,6 +15,8 @@ import android.widget.TextView;
 public class FlavrNotifications extends Activity {
     public static boolean notify;
 
+    /* Set action bar font to system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -22,6 +24,9 @@ public class FlavrNotifications extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Notifications");
     }
+
+    /* Save the boolean that says whether the user has notifications enabled or not.
+     */
     public void saveNotifications(View view) {
         notify=true;
         Intent notifications = new Intent(this, GetFoodList.class);

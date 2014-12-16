@@ -25,12 +25,11 @@ import android.widget.Toast;
 
 public class GetFoodList extends Activity {
     /* These variables are the string names of the ArgMaps holding our hard-coded information.
-     */
+    */
     public static final String FOOD = "Food";
     public static final String EVENT = "Event";
     public static final String DESCRIPTION = "Description";
     public static final String LOCATION = "Location";
-    public static final String START_TIME = "Start Time";
     public static final String END_HOUR = "End Hour";
     public static final String END_MIN = "End Minute";
     public static final String CAPACITY = "Capacity";
@@ -40,6 +39,8 @@ public class GetFoodList extends Activity {
     public static final String DISTANCE = "Distance";
     public static final String ATTENDING = "Attending";
 
+    /* Set action bar font to match system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -48,15 +49,21 @@ public class GetFoodList extends Activity {
         getActionBar().setTitle("Food Events");
     }
 
+    /* Start activity to allow user to enable notifications.
+     */
     private void notifications() {
         Intent notify = new Intent(this, FlavrNotifications.class);
         startActivity(notify);
     }
+    /* Start activity to allow user to filter events by category.
+     */
     private void filter() {
         Intent filters = new Intent(this, FilterBy.class);
         startActivity(filters);
     }
 
+    /* Start activity to allow user to see previously created events.
+     */
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
@@ -64,8 +71,8 @@ public class GetFoodList extends Activity {
 
     @Override
     /* Creates an eventlistadapter to only load the linear layouts of the events being shown
-     * in the listview on screen at the current time.
-     */
+    * in the listview on screen at the current time.
+    */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_food_list);
@@ -97,7 +104,7 @@ public class GetFoodList extends Activity {
                 startActivity(eventInfo);
             }
         });
-        }
+    }
 
 
 

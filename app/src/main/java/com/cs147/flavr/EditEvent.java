@@ -28,12 +28,18 @@ public class EditEvent extends Activity {
     public static Bitmap yourSelectedImage;
     public static Uri selectedImage;
     public static String TIMES = "edittimes";
+
+    /* Allow user to edit image of their event.
+     */
     public void uploadImage(View view) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, SELECT_PHOTO);
 
     }
+
+    /* Set action bar font to match system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -41,10 +47,16 @@ public class EditEvent extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Edit Event");
     }
+
+    /* Bring the user to the page showing their created events.
+     */
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
     }
+
+    /* Enter the old data from the event into the text fields/
+     */
     private void enterOldData(ArgMap info) {
         EditText foodType = (EditText) findViewById(R.id.edit_food_type);
         foodType.setText(info.getString(GetFoodList.FOOD));
@@ -74,6 +86,8 @@ public class EditEvent extends Activity {
         }
     }
 
+    /* Parse the new end time from the time picker in the form.
+     */
     private int[] parseTimes() {
         TimePicker endTimer = (TimePicker) findViewById(R.id.edit_end_time);
         int endHour = endTimer.getCurrentHour();
@@ -85,6 +99,8 @@ public class EditEvent extends Activity {
         return times;
     }
 
+    /* Associate the new information with the argmap corresponding with the event.
+     */
     public void changeEvent(View view) {
         Intent change = new Intent(this, EventConfirmation.class);
         ArgMap event = new ArgMap();

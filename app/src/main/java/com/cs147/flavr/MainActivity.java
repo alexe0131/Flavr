@@ -24,14 +24,20 @@ import java.util.List;
 
 
 public class MainActivity extends Activity {
+    // Hashmaps to associate events with categories and dietary preferences.
     public static HashMap<String, List<ArgMap>> categories = new HashMap<String, List<ArgMap>>(30);
     public static HashMap<String, List<ArgMap>> dietChoices = new HashMap<String, List<ArgMap>>(10);
+    // List of all events
     public static List<ArgMap> events;
+    //List of events user has created.
     public static List<ArgMap> userEvents = new ArrayList<ArgMap>(30);
+    //Lists of dietary preferences and food category options
     public static List<String> dietPrefs = Arrays.asList("Kosher", "Vegetarian", "Vegan", "Gluten-free", "Peanut Allergy", "Lactose Intolerant");
     public static List<String> allCategories = Arrays.asList("Asian Cuisine", "Baked Foods", "BBQ Food", "Beverages", "Coffee or Tea", "Dessert", "Doughnuts", "Ethnic Food", "Fast Food",
             "Fish or Seafood", "Frozen Yogurt", "Ice Cream", "Meat", "Mexican Food", "Pancakes or Waffles", "Pizza", "Various Protein", "Sandwiches", "Snacks", "Soup or Salad");
 
+    /* Set action bar font to system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -39,12 +45,15 @@ public class MainActivity extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Flavr");
     }
+
+    /* Start activity to allow user to see previously created events.
+     */
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
     }
     /*Reads in the hard-coded information through a CSV files using JDDAC library.
-     */
+    */
     public List<ArgMap> readAndroidEmbeddedCSVFile() {
         InputStream is = getResources().openRawResource(R.raw.event_data);
         try {
@@ -56,13 +65,13 @@ public class MainActivity extends Activity {
     }
 
     /* Go to form to give food
-     */
+    */
     public void giveFood(View view) {
         Intent goToForm = new Intent(this, createEvent.class);
         startActivity(goToForm);
     }
     /* Go to list of food events.
-     */
+    */
     public void getFood(View view) {
         Intent goToEventList = new Intent(this, GetFoodList.class);
         startActivity(goToEventList);

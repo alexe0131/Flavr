@@ -38,7 +38,9 @@ import java.util.List;
 
 public class EventInformation extends Activity {
     public ArgMap currEvent;
-    public boolean attending = false;
+
+    /* Set action bar font to system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -47,6 +49,9 @@ public class EventInformation extends Activity {
         getActionBar().setTitle("Event Information");
     }
 
+    /* If the user decides to retract their RSVP, revert the event information page to
+    original format.
+     */
     public void unAttend(View view) {
         Button going = (Button) findViewById(R.id.im_going);
         going.setBackgroundDrawable(getResources().getDrawable(R.drawable.roundedbuttonblue));
@@ -60,10 +65,16 @@ public class EventInformation extends Activity {
         Button notGoing = (Button) findViewById(R.id.not_going);
         notGoing.setVisibility(View.GONE);
     }
+
+    /* Allow the user to see a list of their created events.
+     */
     private void userEvents() {
         Intent events = new Intent(this, UserEvents.class);
         startActivity(events);
     }
+
+    /* Allow user to RSVP to event, add button to allow them to retract RSVP.
+     */
     public void respondToInvite(View view) {
         Button going = (Button) findViewById(R.id.im_going);
         going.setBackgroundDrawable(getResources().getDrawable(R.drawable.roundedbuttongreen));
@@ -77,6 +88,9 @@ public class EventInformation extends Activity {
         Button notGoing = (Button) findViewById(R.id.not_going);
         notGoing.setVisibility(View.VISIBLE);
     }
+
+    /* Add all the event data to the necessary fields
+     */
     private void fillData(ArgMap event) {
         TextView eventTitle = (TextView) findViewById(R.id.get_event_food);
         Typeface alegreya = Typeface.createFromAsset(getAssets(), "fonts/alegreyasanssc_regular.ttf");
@@ -111,6 +125,8 @@ public class EventInformation extends Activity {
 
     }
 
+    /* Use google play services in order to look up an address and display it on the map/
+     */
     private LatLng getLocationFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(this);
         List<Address> address;
@@ -130,31 +146,16 @@ public class EventInformation extends Activity {
 
         return loc;
     }
+
+    /* Calculate and print the amount of time remaining until the event expires.
+     */
     private void printEventExpiry(ArgMap event) {
         Calendar c = Calendar.getInstance();
         int sysHour = c.get(Calendar.HOUR_OF_DAY);
         int sysMin = c.get(Calendar.MINUTE);
-
         Typeface open = Typeface.createFromAsset(getAssets(), "fonts/opensans_regular.ttf");
-
-//        int startHour = times[0];
-//        int startMin = times[1];
         int endHour = Integer.parseInt(event.getString(GetFoodList.END_HOUR));
         int endMin = Integer.parseInt(event.getString(GetFoodList.END_MIN));
-//        TextView startText = (TextView) findViewById(R.id.get_event_starttime);
-//        if (startHour > sysHour) {
-//            int hourDiff = startHour - sysHour;
-//            int minDiff = startMin - sysMin;
-//            if(sysMin > startMin) {
-//                hourDiff--;
-//                minDiff += 60;
-//            }
-//            startText.setText("Your event starts in " + Integer.toString(hourDiff) + " hours and "+ Integer.toString(minDiff)+" minutes.");
-//        }
-//        if(startHour == sysHour && startMin >= sysMin) {
-//            int minDiff = startMin - sysMin;
-//            startText.setText("Your event starts in "+ Integer.toString(minDiff)+" minutes.");
-//        }
         TextView endText = (TextView) findViewById(R.id.get_event_endtime);
         endText.setTypeface(open);
         if (endHour > sysHour) {
@@ -208,7 +209,7 @@ public class EventInformation extends Activity {
             GoogleMap gMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.get_map)).getMap();
             gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
             Marker place = gMap.addMarker(new MarkerOptions()
-                   .position(location));
+                    .position(location));
         }
     }
 

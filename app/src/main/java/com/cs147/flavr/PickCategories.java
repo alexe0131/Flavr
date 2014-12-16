@@ -9,15 +9,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
 import net.java.jddac.common.type.ArgMap;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class PickCategories extends Activity {
+    //List to hold categories associated with an event.
     public static List<String> categories = new ArrayList<String>();
+
+    /* Set action bar font to system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -25,6 +27,8 @@ public class PickCategories extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Flavr");
     }
+    /* Save the user categories for their event.
+     */
     public void saveEvent(View view) {
         finish();
     }
@@ -36,7 +40,7 @@ public class PickCategories extends Activity {
         switch(view.getId()) {
             case R.id.checkbox_asian:
                 if (checked) categories.add("Asian Cuisine");
-                    break;
+                break;
             case R.id.checkbox_baked:
                 if (checked) categories.add("Baked Foods");
                 break;

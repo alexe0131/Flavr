@@ -19,12 +19,9 @@ import java.util.List;
 
 
 public class FilterBy extends Activity {
-    public boolean filterCategory;
-    public boolean filterDiet;
-    public boolean filterLocation;
-    public boolean filterExpireTime;
-    public static String CATEGORY_SORT = "category";
 
+    /* Set action bar font to match system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -32,10 +29,16 @@ public class FilterBy extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Filters");
     }
+
+    /* Sort the list according to the time the event was posted.
+     */
     public void sortNormal(View view) {
         Intent sort = new Intent(this, GetFoodList.class);
         startActivity(sort);
     }
+
+    /* Sort event based on time that the events will expire/
+     */
     public void sortExpiration(View view) {
         List<ArgMap> arr = MainActivity.events;
         for (int i = 0; i < arr.size() - 1; i++)
@@ -52,6 +55,9 @@ public class FilterBy extends Activity {
         Intent sort = new Intent(this, GetFoodList.class);
         startActivity(sort);
     }
+
+    /* Sort the maps by distance from user.
+     */
     public void sortDistance(View view) {
         List<ArgMap> arr = MainActivity.events;
         for (int i = 0; i < arr.size() - 1; i++)
@@ -64,19 +70,26 @@ public class FilterBy extends Activity {
             arr.set(index,arr.get(i));
             arr.set(i, smallerNumber);
         }
-    MainActivity.events = arr;
-    Intent sort = new Intent(this, GetFoodList.class);
+        MainActivity.events = arr;
+        Intent sort = new Intent(this, GetFoodList.class);
         startActivity(sort);
     }
+
+    /* Show only events from a certain category.
+     */
     public void sortCategory(View view) {
         Intent sort = new Intent(this, FilterCategory.class);
         startActivity(sort);
     }
 
+    /* Show only events matching a certain dietary preference.
+     */
     public void sortDiet(View view) {
         Intent sort = new Intent(this, FilterDiet.class);
         startActivity(sort);
     }
+    /* Show the buttons that show the different sorting methods.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

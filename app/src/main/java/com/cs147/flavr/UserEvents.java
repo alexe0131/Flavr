@@ -16,6 +16,9 @@ import net.java.jddac.common.type.ArgMap;
 
 
 public class UserEvents extends Activity {
+
+    /* Set action bar font to system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -23,6 +26,9 @@ public class UserEvents extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("My Events");
     }
+
+    /* Populate list of all events that user has created.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

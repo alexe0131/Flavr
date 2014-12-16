@@ -16,6 +16,8 @@ import android.widget.TextView;
 public class FilterDiet extends Activity {
     public static String DIET = "chosen category";
 
+    /* Set action bar font to system standard.
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -23,6 +25,8 @@ public class FilterDiet extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Filter By Diet");
     }
+    /* Generate event list based on a dietary preference.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -17,6 +17,9 @@ import net.java.jddac.common.type.ArgMap;
 
 public class FilterCategory extends Activity {
     public static String CATEGORY = "chosen category";
+
+    /* Set action bar font to system standard
+     */
     private void createCustomActionBar() {
         int actionBarTitle = Resources.getSystem().getIdentifier("action_bar_title","id","android");
         TextView actionBarTitleView = (TextView) getWindow().findViewById(actionBarTitle);
@@ -24,6 +27,9 @@ public class FilterCategory extends Activity {
         actionBarTitleView.setTypeface(alegreya);
         getActionBar().setTitle("Filter By Category");
     }
+
+    /* Generate event list view based on category
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
